@@ -1,0 +1,339 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f4f7fb;
+  font-family: 'Inter', sans-serif;
+  color: #1e293b;
+}
+
+/* HERO */
+
+.hero {
+  position: relative;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #1e3a8a
+    );
+
+  padding:
+    70px 20px 120px;
+
+  color: white;
+
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 700px;
+  margin: auto;
+}
+
+.tag {
+  display: inline-block;
+
+  background: rgba(255,255,255,0.12);
+
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+
+  margin-bottom: 20px;
+
+  backdrop-filter: blur(10px);
+}
+
+.hero h1 {
+  font-size: 52px;
+  font-weight: 700;
+
+  margin-bottom: 14px;
+}
+
+.hero p {
+  font-size: 18px;
+
+  opacity: 0.9;
+
+  line-height: 1.6;
+
+  max-width: 500px;
+}
+
+/* CONTAINER */
+
+.container {
+  max-width: 850px;
+
+  margin: auto;
+
+  padding: 0 20px;
+}
+
+/* SEARCH */
+
+.search-box {
+  background: white;
+
+  margin-top: -50px;
+
+  padding: 18px;
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08);
+
+  display: flex;
+  gap: 12px;
+
+  position: relative;
+  z-index: 5;
+}
+
+.search-box input {
+  flex: 1;
+
+  border: none;
+
+  background: #f1f5f9;
+
+  padding: 16px;
+
+  border-radius: 16px;
+
+  font-size: 15px;
+
+  outline: none;
+}
+
+.search-box button {
+  border: none;
+
+  background: #2563eb;
+
+  color: white;
+
+  padding: 16px 22px;
+
+  border-radius: 16px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.search-box button:hover {
+  transform: translateY(-2px);
+
+  background: #1d4ed8;
+}
+
+/* RESULTADOS */
+
+.resultados {
+  margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+
+  padding-bottom: 40px;
+}
+
+/* CARD */
+
+.card {
+  background: white;
+
+  border-radius: 24px;
+
+  padding: 22px;
+
+  box-shadow:
+    0 8px 24px rgba(15,23,42,0.06);
+
+  transition: 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card-top {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 20px;
+}
+
+.card h2 {
+  font-size: 20px;
+
+  margin-bottom: 6px;
+}
+
+.distance {
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+.endereco {
+  margin-top: 14px;
+
+  color: #475569;
+
+  line-height: 1.5;
+}
+
+/* LINHAS */
+
+.linha-tag {
+  padding: 10px 16px;
+
+  border-radius: 999px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: white;
+
+  white-space: nowrap;
+}
+
+.azul {
+  background: #2563eb;
+}
+
+.vermelha {
+  background: #ef4444;
+}
+
+.amarela {
+  background: #eab308;
+  color: black;
+}
+
+/* HORÁRIOS */
+
+.horarios {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 18px;
+}
+
+.horarios span {
+  background: #eff6ff;
+
+  color: #2563eb;
+
+  padding: 10px 14px;
+
+  border-radius: 12px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 700px) {
+
+  .hero {
+    padding: 50px 20px 90px;
+  }
+
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .search-box {
+    flex-direction: column;
+  }
+
+  .card-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
+
+/* LINHA 1 */
+
+.linha-1 .linha-tag {
+  background: #2563eb;
+}
+
+.linha-1 .horarios span {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+/* LINHA 2 */
+
+.linha-2 .linha-tag {
+  background: #ef4444;
+}
+
+.linha-2 .horarios span {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+/* LINHA 3 */
+
+.linha-3 .linha-tag {
+  background: #eab308;
+  color: black;
+}
+
+.linha-3 .horarios span {
+  background: #fef9c3;
+  color: #a16207;
+}
+
+/* LINHA 4 */
+
+.linha-4 .linha-tag {
+  background: #22c55e;
+}
+
+.linha-4 .horarios span {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* LINHA 5 */
+
+.linha-5 .linha-tag {
+  background: #a855f7;
+}
+
+.linha-5 .horarios span {
+  background: #f3e8ff;
+  color: #7e22ce;
+}

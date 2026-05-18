@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BarraBus</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+</head>
+
+<body>
+
+  <header class="hero">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+      <span class="tag">
+        Mobilidade Urbana
+      </span>
+
+      <h1>🚌 BarraBus</h1>
+
+      <p>
+        Encontre pontos, linhas e horários
+        de ônibus em Barra Bonita.
+      </p>
+
+    </div>
+
+  </header>
+
+  <main class="container">
+
+    <section class="search-box">
+
+      <input
+        type="text"
+        placeholder="Digite seu bairro ou endereço..."
+      >
+
+      <button>
+        📍 Minha localização
+      </button>
+
+    </section>
+
+    <section
+      class="resultados"
+      id="resultados"
+    >
+
+      <div class="card">
+
+        <div class="card-top">
+
+          <div>
+            <h2>📍 Rodoviária Nova</h2>
+
+            <span class="distance">
+              120m de distância
+            </span>
+          </div>
+
+          <span class="linha-tag azul">
+            Linha 01
+          </span>
+
+        </div>
+        
+
+        <p class="endereco">
+          Av. Pedro Ometto - Habitacional
+        </p>
+
+        <div class="horarios">
+          <span>06:20</span>
+          <span>07:05</span>
+          <span>08:00</span>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

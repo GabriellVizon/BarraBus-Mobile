@@ -1,0 +1,123 @@
+[
+  {
+    "linhaId": 1,
+    "ordem": 1,
+    "nome": "Rodoviária Nova",
+    "endereco": "Av. Pedro Ometto (Habitacional)"
+  },
+  {
+    "linhaId": 1,
+    "ordem": 2,
+    "nome": "Igreja Congregação",
+    "endereco": "Rua Ivan Fleury Meireles (Habitacional)"
+  },
+  {
+    "linhaId": 1,
+    "ordem": 3,
+    "nome": "Posto de Saúde Central",
+    "endereco": "Rua Manoel de Almeida Camargo"
+  },
+  {
+    "linhaId": 1,
+    "ordem": 4,
+    "nome": "Fernandes Max",
+    "endereco": "Rua Valentin Regina, 325 (Vila Narcisa)"
+  },
+  {
+    "linhaId": 1,
+    "ordem": 5,
+    "nome": "Jau Serve",
+    "endereco": "Rua Rio Branco, 550 - Centro"
+  },
+  {
+    "linhaId": 1,
+    "ordem": 6,
+    "nome": "Banco Itaú",
+    "endereco": "Rua Major Pompeu, 420 (Centro)"
+  },
+  {
+    "linhaId": 1,
+    "ordem": 7,
+    "nome": "Dia",
+    "endereco": "Av. da Saúde, 181 - Centro"
+  },
+  {
+    "linhaId": 1,
+    "ordem": 8,
+    "nome": "Vidraçaria Temperplac",
+    "endereco": "Rua Fernão Salles, 336 - Centro"
+  },
+  {
+    "linhaId": 1,
+    "ordem": 9,
+    "nome": "Supermercado Fernandes",
+    "endereco": "Rua 9 de Julho, 407 - JD São Caetano"
+  },
+  {
+    "linhaId": 1,
+    "ordem": 10,
+    "nome": "Boca Rica",
+    "endereco": "Av Industrial"
+  },
+
+  {
+    "linhaId": 2,
+    "ordem": 1,
+    "nome": "Jau Serve",
+    "endereco": "Rua Rio Branco, 550 - Centro"
+  },
+  {
+    "linhaId": 2,
+    "ordem": 2,
+    "nome": "Banco Itaú",
+    "endereco": "Rua Major Pompeu, 420 (Centro)"
+  },
+  {
+    "linhaId": 2,
+    "ordem": 3,
+    "nome": "Dia",
+    "endereco": "Av. da Saúde, 181 - Centro"
+  },
+  {
+    "linhaId": 2,
+    "ordem": 4,
+    "nome": "Vidraçaria Temperplac",
+    "endereco": "Rua Fernão Salles, 336 - Centro"
+  },
+  {
+    "linhaId": 2,
+    "ordem": 5,
+    "nome": "Supermercado Fernandes",
+    "endereco": "Rua 9 de Julho, 407 - JD São Caetano"
+  },
+  {
+    "linhaId": 2,
+    "ordem": 6,
+    "nome": "Boca Rica (Em Frente)",
+    "endereco": "Rua Domingos Ghedin - Vila Correia"
+  },
+  {
+    "linhaId": 2,
+    "ordem": 7,
+    "nome": "Padaria Empório dos Pães",
+    "endereco": "Rua Antonio Bressan - Nova Barra"
+  },
+  {
+    "linhaId": 2,
+    "ordem": 8,
+    "nome": "Antiga COEBB",
+    "endereco": "Rua Bernardino Santille, 378 - Nova Barra"
+  },
+  {
+    "linhaId": 2,
+    "ordem": 9,
+    "nome": "Rubens Pedro de Oliveira",
+    "endereco": "Esquina com Bernardino Santille"
+  },
+  {
+    "linhaId": 2,
+    "ordem": 10,
+    "nome": "Pracinha Lojas São Paulo",
+    "endereco": "Rua Antonio Dario - Cohab"
+  }
+]
