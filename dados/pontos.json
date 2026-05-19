@@ -1,123 +1,444 @@
 [
   {
+    "id": 1,
     "linhaId": 1,
     "ordem": 1,
     "nome": "Rodoviária Nova",
-    "endereco": "Av. Pedro Ometto (Habitacional)"
+    "endereco": "Av. Pedro Ometto",
+    "bairro": "Habitacional",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 2,
     "linhaId": 1,
     "ordem": 2,
     "nome": "Igreja Congregação",
-    "endereco": "Rua Ivan Fleury Meireles (Habitacional)"
+    "endereco": "Rua Ivan Fleury Meireles",
+    "bairro": "Habitacional",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 3,
     "linhaId": 1,
     "ordem": 3,
     "nome": "Posto de Saúde Central",
-    "endereco": "Rua Manoel de Almeida Camargo"
+    "endereco": "Rua Manoel de Almeida Camargo",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 4,
     "linhaId": 1,
     "ordem": 4,
     "nome": "Fernandes Max",
-    "endereco": "Rua Valentin Regina, 325 (Vila Narcisa)"
+    "endereco": "Rua Valentin Regina, 325",
+    "bairro": "Vila Narcisa",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 5,
     "linhaId": 1,
     "ordem": 5,
-    "nome": "Jau Serve",
-    "endereco": "Rua Rio Branco, 550 - Centro"
+    "nome": "Jaú Serve",
+    "endereco": "Rua Rio Branco, 550",
+    "bairro": "Centro",
+    "lat": -22.4979176,
+    "lng": -48.5572217
   },
   {
+    "id": 6,
     "linhaId": 1,
     "ordem": 6,
     "nome": "Banco Itaú",
-    "endereco": "Rua Major Pompeu, 420 (Centro)"
+    "endereco": "Rua Major Pompeu, 420",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 7,
     "linhaId": 1,
     "ordem": 7,
-    "nome": "Dia",
-    "endereco": "Av. da Saúde, 181 - Centro"
+    "nome": "Supermercado Dia",
+    "endereco": "Av. da Saúde, 181",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 8,
     "linhaId": 1,
     "ordem": 8,
     "nome": "Vidraçaria Temperplac",
-    "endereco": "Rua Fernão Salles, 336 - Centro"
+    "endereco": "Rua Fernão Salles, 336",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 9,
     "linhaId": 1,
     "ordem": 9,
     "nome": "Supermercado Fernandes",
-    "endereco": "Rua 9 de Julho, 407 - JD São Caetano"
+    "endereco": "Rua 9 de Julho, 407",
+    "bairro": "Jardim São Caetano",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 10,
     "linhaId": 1,
     "ordem": 10,
     "nome": "Boca Rica",
-    "endereco": "Av Industrial"
+    "endereco": "Av. Industrial",
+    "bairro": "Distrito Industrial",
+    "lat": null,
+    "lng": null
   },
 
   {
+    "id": 11,
     "linhaId": 2,
     "ordem": 1,
-    "nome": "Jau Serve",
-    "endereco": "Rua Rio Branco, 550 - Centro"
+    "nome": "Jaú Serve",
+    "endereco": "Rua Rio Branco, 550",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 12,
     "linhaId": 2,
     "ordem": 2,
     "nome": "Banco Itaú",
-    "endereco": "Rua Major Pompeu, 420 (Centro)"
+    "endereco": "Rua Major Pompeu, 420",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 13,
     "linhaId": 2,
     "ordem": 3,
-    "nome": "Dia",
-    "endereco": "Av. da Saúde, 181 - Centro"
+    "nome": "Supermercado Dia",
+    "endereco": "Av. da Saúde, 181",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 14,
     "linhaId": 2,
     "ordem": 4,
     "nome": "Vidraçaria Temperplac",
-    "endereco": "Rua Fernão Salles, 336 - Centro"
+    "endereco": "Rua Fernão Salles, 336",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 15,
     "linhaId": 2,
     "ordem": 5,
     "nome": "Supermercado Fernandes",
-    "endereco": "Rua 9 de Julho, 407 - JD São Caetano"
+    "endereco": "Rua 9 de Julho, 407",
+    "bairro": "Jardim São Caetano",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 16,
     "linhaId": 2,
     "ordem": 6,
     "nome": "Boca Rica (Em Frente)",
-    "endereco": "Rua Domingos Ghedin - Vila Correia"
+    "endereco": "Rua Domingos Ghedin",
+    "bairro": "Vila Correia",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 17,
     "linhaId": 2,
     "ordem": 7,
     "nome": "Padaria Empório dos Pães",
-    "endereco": "Rua Antonio Bressan - Nova Barra"
+    "endereco": "Rua Antonio Bressan",
+    "bairro": "Nova Barra",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 18,
     "linhaId": 2,
     "ordem": 8,
     "nome": "Antiga COEBB",
-    "endereco": "Rua Bernardino Santille, 378 - Nova Barra"
+    "endereco": "Rua Bernardino Santille, 378",
+    "bairro": "Nova Barra",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 19,
     "linhaId": 2,
     "ordem": 9,
     "nome": "Rubens Pedro de Oliveira",
-    "endereco": "Esquina com Bernardino Santille"
+    "endereco": "Esquina com Bernardino Santille",
+    "bairro": "Nova Barra",
+    "lat": null,
+    "lng": null
   },
   {
+    "id": 20,
     "linhaId": 2,
     "ordem": 10,
     "nome": "Pracinha Lojas São Paulo",
-    "endereco": "Rua Antonio Dario - Cohab"
+    "endereco": "Rua Antonio Dario",
+    "bairro": "Cohab",
+    "lat": null,
+    "lng": null
+  },
+
+  {
+    "id": 21,
+    "linhaId": 3,
+    "ordem": 1,
+    "nome": "Sinal Verde",
+    "endereco": "Av. João Paulo II",
+    "bairro": "Cohab",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 22,
+    "linhaId": 3,
+    "ordem": 2,
+    "nome": "Loja Babilônia",
+    "endereco": "Av. João Paulo II, 805",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 23,
+    "linhaId": 3,
+    "ordem": 3,
+    "nome": "OP Informática",
+    "endereco": "Av. João Paulo II",
+    "bairro": "Cohab",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 24,
+    "linhaId": 3,
+    "ordem": 4,
+    "nome": "Banca de Calçados",
+    "endereco": "Rua João Morelatto",
+    "bairro": "Sonho Nosso",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 25,
+    "linhaId": 3,
+    "ordem": 5,
+    "nome": "Casa",
+    "endereco": "Rua Armando Moretti, 575",
+    "bairro": "Sonho Nosso IV",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 26,
+    "linhaId": 3,
+    "ordem": 6,
+    "nome": "Rotatória Vitória 1",
+    "endereco": "Av. João Paulo II",
+    "bairro": "Sonho Nosso IV",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 27,
+    "linhaId": 3,
+    "ordem": 7,
+    "nome": "Cobertura Pé de Amora",
+    "endereco": "Av. João Paulo II",
+    "bairro": "Sonho Nosso IV",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 28,
+    "linhaId": 3,
+    "ordem": 8,
+    "nome": "Loja Skate",
+    "endereco": "Av. João Paulo II",
+    "bairro": "Sonho Nosso II",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 29,
+    "linhaId": 3,
+    "ordem": 9,
+    "nome": "Loja JP Presentes",
+    "endereco": "Av. Dionísio Dutra e Silva",
+    "bairro": "Cohab",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 30,
+    "linhaId": 3,
+    "ordem": 10,
+    "nome": "Lanches",
+    "endereco": "Av. Dionísio Dutra e Silva, 457",
+    "bairro": "Cohab",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 31,
+    "linhaId": 3,
+    "ordem": 11,
+    "nome": "Incubadora",
+    "endereco": "Av. Dionísio Dutra e Silva, 241",
+    "bairro": "Cohab",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 32,
+    "linhaId": 3,
+    "ordem": 12,
+    "nome": "Biscoitos Fofinho",
+    "endereco": "Av. Industrial, 1329",
+    "bairro": "Distrito Industrial",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 33,
+    "linhaId": 3,
+    "ordem": 13,
+    "nome": "Dierberg",
+    "endereco": "Av. Industrial, 827",
+    "bairro": "Distrito Industrial",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 34,
+    "linhaId": 3,
+    "ordem": 14,
+    "nome": "Cerâmica Lourenção",
+    "endereco": "Av. Industrial, 321",
+    "bairro": "Distrito Industrial",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 35,
+    "linhaId": 3,
+    "ordem": 15,
+    "nome": "Boca Rica",
+    "endereco": "Av. Industrial",
+    "bairro": "Distrito Industrial",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 36,
+    "linhaId": 3,
+    "ordem": 16,
+    "nome": "Padaria Barão",
+    "endereco": "Rua João Pessoa, 464",
+    "bairro": "Vila Nova",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 37,
+    "linhaId": 3,
+    "ordem": 17,
+    "nome": "Depósito Prospel",
+    "endereco": "Rua João Pessoa, 293",
+    "bairro": "Vila Nova",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 38,
+    "linhaId": 3,
+    "ordem": 18,
+    "nome": "Sorveteria (Em Frente)",
+    "endereco": "Rua Prudente de Morais",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 39,
+    "linhaId": 3,
+    "ordem": 19,
+    "nome": "Igreja Matriz São José",
+    "endereco": "Rua Prudente de Morais, 756",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 40,
+    "linhaId": 3,
+    "ordem": 20,
+    "nome": "Jaú Serve",
+    "endereco": "Rua Rio Branco, 550",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 41,
+    "linhaId": 3,
+    "ordem": 21,
+    "nome": "Banco Itaú",
+    "endereco": "Rua Major Pompeu, 420",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 42,
+    "linhaId": 3,
+    "ordem": 22,
+    "nome": "Posto do Frollini",
+    "endereco": "Av. João da Silva Nogueira",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 43,
+    "linhaId": 3,
+    "ordem": 23,
+    "nome": "Orquidário",
+    "endereco": "Av. João da Silva Nogueira",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
+  },
+  {
+    "id": 44,
+    "linhaId": 3,
+    "ordem": 24,
+    "nome": "Hotel Estância",
+    "endereco": "Av. João da Silva Nogueira",
+    "bairro": "Centro",
+    "lat": null,
+    "lng": null
   }
 ]

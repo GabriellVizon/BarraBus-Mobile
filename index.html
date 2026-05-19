@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>BarraBus</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
 
   <link
     rel="preconnect"
@@ -17,25 +26,31 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   >
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+
 </head>
 
 <body>
 
   <header class="hero">
 
-    <div class="overlay"></div>
-
     <div class="hero-content">
 
       <span class="tag">
-        Mobilidade Urbana
+        Mobilidade Urbana • Barra Bonita
       </span>
 
-      <h1>🚌 BarraBus</h1>
+      <h1>
+        🚌 BarraBus
+      </h1>
 
       <p>
-        Encontre pontos, linhas e horários
-        de ônibus em Barra Bonita.
+        Descubra pontos, linhas e horários
+        de ônibus da cidade.
       </p>
 
     </div>
@@ -48,12 +63,21 @@
 
       <input
         type="text"
-        placeholder="Digite seu bairro ou endereço..."
+        id="busca"
+        placeholder="Digite bairro, rua ou linha..."
       >
 
-      <button>
+      <button id="localizacaoBtn">
         📍 Minha localização
       </button>
+
+    </section>
+
+    <section class="status-bar">
+
+      <span id="quantidadeResultados">
+        Carregando pontos...
+      </span>
 
     </section>
 
@@ -61,43 +85,32 @@
       class="resultados"
       id="resultados"
     >
+    </section>
 
-      <div class="card">
+    <section class="mapa-section">
 
-        <div class="card-top">
+      <div class="mapa-topo">
 
-          <div>
-            <h2>📍 Rodoviária Nova</h2>
+        <h2>
+          🗺️ Mapa da Cidade
+        </h2>
 
-            <span class="distance">
-              120m de distância
-            </span>
-          </div>
-
-          <span class="linha-tag azul">
-            Linha 01
-          </span>
-
-        </div>
-        
-
-        <p class="endereco">
-          Av. Pedro Ometto - Habitacional
+        <p>
+          Visualização dos pontos de ônibus
         </p>
 
-        <div class="horarios">
-          <span>06:20</span>
-          <span>07:05</span>
-          <span>08:00</span>
-        </div>
-
       </div>
+
+      <div id="map"></div>
 
     </section>
 
   </main>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
   <script src="script.js"></script>
 
 </body>
+
 </html>
