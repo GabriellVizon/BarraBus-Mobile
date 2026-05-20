@@ -6,8 +6,8 @@
     "nome": "Rodoviária Nova",
     "endereco": "Av. Pedro Ometto",
     "bairro": "Habitacional",
-    "lat": null,
-    "lng": null
+    "lat": -22.4865561,
+    "lng": -48.5484917
   },
   {
     "id": 2,
@@ -308,18 +308,18 @@
     "nome": "Incubadora",
     "endereco": "Av. Dionísio Dutra e Silva, 241",
     "bairro": "Cohab",
-    "lat": null,
-    "lng": null
+    "lat": -22.475231,
+    "lng": -48.5692824
   },
   {
     "id": 32,
     "linhaId": 3,
     "ordem": 12,
     "nome": "Biscoitos Fofinho",
-    "endereco": "Av. Industrial, 1329",
+    "endereco": "Av. Industrial, 1329. Dr. José Erineu Ortigosa",
     "bairro": "Distrito Industrial",
-    "lat": null,
-    "lng": null
+    "lat": -22.4768589,
+    "lng": -48.5689741
   },
   {
     "id": 33,
@@ -328,8 +328,8 @@
     "nome": "Dierberg",
     "endereco": "Av. Industrial, 827",
     "bairro": "Distrito Industrial",
-    "lat": null,
-    "lng": null
+    "lat": -22.4803974,
+    "lng": -48.5677029
   },
   {
     "id": 34,
@@ -338,8 +338,8 @@
     "nome": "Cerâmica Lourenção",
     "endereco": "Av. Industrial, 321",
     "bairro": "Distrito Industrial",
-    "lat": null,
-    "lng": null
+    "lat": -22.485449,
+    "lng": -48.5658843
   },
   {
     "id": 35,
@@ -348,8 +348,8 @@
     "nome": "Boca Rica",
     "endereco": "Av. Industrial",
     "bairro": "Distrito Industrial",
-    "lat": null,
-    "lng": null
+    "lat": -22.4913627,
+    "lng": -48.5471219
   },
   {
     "id": 36,
@@ -358,8 +358,8 @@
     "nome": "Padaria Barão",
     "endereco": "Rua João Pessoa, 464",
     "bairro": "Vila Nova",
-    "lat": null,
-    "lng": null
+    "lat": -22.4915956,
+    "lng": -48.5637664
   },
   {
     "id": 37,
@@ -368,8 +368,8 @@
     "nome": "Depósito Prospel",
     "endereco": "Rua João Pessoa, 293",
     "bairro": "Vila Nova",
-    "lat": null,
-    "lng": null
+    "lat": -22.4936817,
+    "lng": -48.5643362
   },
   {
     "id": 38,
@@ -378,8 +378,8 @@
     "nome": "Sorveteria (Em Frente)",
     "endereco": "Rua Prudente de Morais",
     "bairro": "Centro",
-    "lat": null,
-    "lng": null
+    "lat": -22.4948692,
+    "lng": -48.5607349
   },
   {
     "id": 39,
@@ -388,8 +388,8 @@
     "nome": "Igreja Matriz São José",
     "endereco": "Rua Prudente de Morais, 756",
     "bairro": "Centro",
-    "lat": null,
-    "lng": null
+    "lat": -22.4954171,
+    "lng": -48.5583633
   },
   {
     "id": 40,
@@ -398,8 +398,8 @@
     "nome": "Jaú Serve",
     "endereco": "Rua Rio Branco, 550",
     "bairro": "Centro",
-    "lat": null,
-    "lng": null
+    "lat": -22.4979176,
+    "lng": -48.5572217
   },
   {
     "id": 41,
@@ -408,8 +408,8 @@
     "nome": "Banco Itaú",
     "endereco": "Rua Major Pompeu, 420",
     "bairro": "Centro",
-    "lat": null,
-    "lng": null
+   "lat": -22.4968479,
+    "lng": -48.5610173
   },
   {
     "id": 42,
@@ -418,8 +418,8 @@
     "nome": "Posto do Frollini",
     "endereco": "Av. João da Silva Nogueira",
     "bairro": "Centro",
-    "lat": null,
-    "lng": null
+    "lat": -22.4984249,
+    "lng": -48.5517277
   },
   {
     "id": 43,
@@ -428,8 +428,8 @@
     "nome": "Orquidário",
     "endereco": "Av. João da Silva Nogueira",
     "bairro": "Centro",
-    "lat": null,
-    "lng": null
+    "lat": -22.5078845,
+    "lng": -48.5405268
   },
   {
     "id": 44,
@@ -438,7 +438,7 @@
     "nome": "Hotel Estância",
     "endereco": "Av. João da Silva Nogueira",
     "bairro": "Centro",
-    "lat": null,
-    "lng": null
+    "lat": -22.5138794,
+    "lng": -48.5366303
   }
 ]
