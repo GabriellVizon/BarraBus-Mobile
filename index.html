@@ -8,6 +8,9 @@
     <!-- Tabler Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 
+    <!-- Leaflet Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -175,7 +178,7 @@
             border-radius: var(--radius-md);
             padding: 8px 12px;
             gap: 8px;
-            width: 240px;
+            width: 320px;
         }
         .search-box i {
             color: var(--text-muted);
@@ -185,7 +188,7 @@
         .search-box input {
             background: transparent;
             border: none;
-            color: var(--text-muted);
+            color: var(--text-primary);
             font-size: 13px;
             font-family: 'Inter', sans-serif;
             width: 100%;
@@ -374,6 +377,10 @@
             transition: all .2s;
             white-space: nowrap;
             color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+        }
+        button.filter-tag {
+            border: 1px solid var(--border);
         }
         .filter-tag:hover {
             background: #252525;
@@ -441,6 +448,10 @@
             border-color: #444;
             background: #1e1e1e;
         }
+        .card.selected {
+            border-color: var(--red);
+            box-shadow: 0 0 0 1px rgba(229, 57, 53, 0.35);
+        }
         .card-header {
             display: flex;
             align-items: flex-start;
@@ -500,6 +511,80 @@
         }
         .card-line-time.waiting {
             color: var(--text-secondary);
+        }
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 0 0 12px;
+        }
+        .meta-chip {
+            color: var(--text-secondary);
+            background: var(--bg-hover);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 8px;
+        }
+        .card-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .card-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-height: 32px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-hover);
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 7px 10px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all .2s;
+        }
+        .card-action:hover {
+            border-color: var(--red);
+            color: #fff;
+        }
+        .card-action.primary {
+            background: var(--red);
+            border-color: var(--red);
+            color: #fff;
+        }
+        .card-action[disabled] {
+            cursor: not-allowed;
+            opacity: .55;
+        }
+        .empty-state {
+            background: var(--bg-card);
+            border: 1px dashed var(--border);
+            border-radius: var(--radius-lg);
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.5;
+            padding: 18px;
+            grid-column: 1 / -1;
+        }
+        .results-count {
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .stop-times {
+            margin: 12px 0 0;
+        }
+        .stop-times .time-chip {
+            font-size: 11px;
+            padding: 4px 8px;
         }
 
         /* ========== LINE CARDS ========== */
@@ -674,7 +759,17 @@
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
             overflow: hidden;
-            height: 300px;
+            height: 380px;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
+            background: var(--bg-hover);
+        }
+        .leaflet-container {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-hover);
         }
         .map-container img {
             width: 100%;
@@ -683,12 +778,15 @@
         }
         .map-overlay {
             position: absolute;
-            top: 12px;
+            bottom: 12px;
             left: 12px;
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
             padding: 10px 12px;
+            z-index: 500;
+            max-width: min(320px, calc(100% - 24px));
+            pointer-events: none;
         }
         .map-overlay-label {
             color: var(--text-muted);
@@ -714,6 +812,27 @@
             height: 3px;
             background: var(--red);
             border-radius: 2px;
+        }
+        .leaflet-popup-content-wrapper,
+        .leaflet-popup-tip {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        .leaflet-popup-content {
+            margin: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+        }
+        .leaflet-popup-content strong {
+            display: block;
+            color: #fff;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+        .leaflet-control-attribution {
+            background: rgba(13, 13, 13, 0.8) !important;
+            color: var(--text-muted) !important;
         }
         .map-status {
             display: flex;
@@ -917,8 +1036,21 @@
             }
         }
         @media (max-width: 480px) {
+            .topbar {
+                position: relative;
+            }
             .search-box {
                 display: none;
+            }
+            .search-box.mobile-open {
+                display: flex;
+                position: absolute;
+                left: 12px;
+                right: 12px;
+                top: 58px;
+                width: auto;
+                z-index: 60;
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
             }
             .search-icon-mobile {
                 display: block;
@@ -936,6 +1068,11 @@
             .footer {
                 padding: 24px 16px;
             }
+            .map-container,
+            #map {
+                min-height: 320px;
+                height: 320px;
+            }
         }
     </style>
 </head>
@@ -952,14 +1089,17 @@
                 </div>
                 <span>BarraBus</span>
             </div>
-            <a href="#" class="sidebar-link active">
-                <i class="ti ti-home"></i> HOME
+            <a href="#inicio" class="sidebar-link active">
+                <i class="ti ti-home"></i> INÍCIO
             </a>
-            <a href="#" class="sidebar-link">
-                <i class="ti ti-adjustments-horizontal"></i> LINES
+            <a href="#linhas" class="sidebar-link">
+                <i class="ti ti-adjustments-horizontal"></i> LINHAS
             </a>
-            <a href="#" class="sidebar-link">
-                <i class="ti ti-map-pin"></i> NEARBY
+            <a href="#pontos" class="sidebar-link">
+                <i class="ti ti-map-pin"></i> PONTOS
+            </a>
+            <a href="#mapa" class="sidebar-link">
+                <i class="ti ti-map"></i> MAPA
             </a>
         </aside>
 
@@ -979,14 +1119,14 @@
                 <div class="topbar-right">
                     <div class="search-box" id="searchBox">
                         <i class="ti ti-search"></i>
-                        <input type="text" placeholder="Buscar linhas ou locais...">
+                        <input type="search" id="searchInput" placeholder="Buscar pontos, bairros ou linhas..." aria-label="Buscar pontos, bairros ou linhas">
                     </div>
                     <i class="ti ti-search search-icon-mobile" id="searchMobileBtn"></i>
                 </div>
             </div>
 
             <!-- Hero Section -->
-            <section class="hero">
+            <section class="hero" id="inicio">
                 <div class="hero-bg">
                     <svg width="100%" height="100%" viewBox="0 0 800 280" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -1013,7 +1153,7 @@
                         <span>Encontre pontos, linhas e<br>horários de ônibus em Barra<br>Bonita</span>
                     </h1>
                     <button class="hero-btn" id="heroBtn">
-                        <i class="ti ti-map-pin"></i> Localizar ônibus em tempo real
+                        <i class="ti ti-map-pin"></i> Usar minha localização
                     </button>
                 </div>
             </section>
@@ -1026,7 +1166,7 @@
                     </div>
                     <div class="location-text">
                         <span class="location-label">SUA LOCALIZAÇÃO</span>
-                        <span class="location-value">Rua Pedro Ometto, 102</span>
+                        <span class="location-value" id="userLocationText">Aguardando permissão</span>
                     </div>
                 </div>
                 <div class="location-divider"></div>
@@ -1036,188 +1176,72 @@
                     </div>
                     <div class="location-text">
                         <span class="location-label">PONTO MAIS PRÓXIMO</span>
-                        <span class="location-value">Terminal Rodoviário (150m)</span>
+                        <span class="location-value" id="nearestStopText">Calculando após localizar</span>
                     </div>
                 </div>
                 <div class="location-divider"></div>
                 <div class="location-embark">
                     <span class="embark-label">PRÓXIMO EMBARQUE</span>
-                    <span class="embark-time">4 min</span>
+                    <span class="embark-time" id="nextDepartureText">--</span>
                 </div>
             </div>
 
             <!-- Filter Tags -->
             <div class="filter-tags" id="filterTags">
-                <div class="filter-tag active-filter">
-                    <i class="ti ti-adjustments-horizontal"></i> Filtros
-                </div>
-                <div class="filter-tag">Por Proximidade</div>
-                <div class="filter-tag">Bairros</div>
-                <div class="filter-tag">Linhas Circulares</div>
-                <div class="filter-tag">Favoritos</div>
+                <button class="filter-tag active-filter" type="button" data-filter="all">
+                    <i class="ti ti-adjustments-horizontal"></i> Todos
+                </button>
+                <button class="filter-tag" type="button" data-filter="nearby">Por Proximidade</button>
+                <button class="filter-tag" type="button" data-filter="linha-1">Linha 01</button>
+                <button class="filter-tag" type="button" data-filter="linha-2">Linha 02</button>
+                <button class="filter-tag" type="button" data-filter="linha-3">Linha 03</button>
             </div>
 
             <!-- Pontos Próximos -->
-            <section class="section">
+            <section class="section" id="pontos">
                 <div class="section-header">
                     <div>
                         <h2 class="section-title">Pontos Próximos</h2>
-                        <p class="section-subtitle">Estações e pontos de parada ao seu redor agora.</p>
+                        <p class="section-subtitle" id="nearbySubtitle">Permita a localização para ver os 3 pontos mais próximos.</p>
                     </div>
-                    <span class="section-link">Ver Todos ›</span>
+                    <span class="section-link" id="showAllStops">Ver Todos ›</span>
                 </div>
-                <div class="cards-grid">
-                    <!-- Card 1 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-icon">
-                                <i class="ti ti-building-community"></i>
-                            </div>
-                            <span class="card-distance">150m</span>
-                        </div>
-                        <h3 class="card-title">Terminal Rodoviário</h3>
-                        <p class="card-address">Av. Dr. Caio Simões</p>
-                        <div class="card-line">
-                            <span class="card-line-name">CIRCULAR 01</span>
-                            <span class="card-line-time now">AGORA</span>
-                        </div>
-                        <div class="card-line">
-                            <span class="card-line-name">CIRCULAR 03</span>
-                            <span class="card-line-time waiting">12 MIN</span>
-                        </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-icon">
-                                <i class="ti ti-map"></i>
-                            </div>
-                            <span class="card-distance">420m</span>
-                        </div>
-                        <h3 class="card-title">Praça do Artesanato</h3>
-                        <p class="card-address">Rua Winifrida</p>
-                        <div class="card-line">
-                            <span class="card-line-name">CAMPOS SALLES</span>
-                            <span class="card-line-time waiting">8 MIN</span>
-                        </div>
-                        <div class="card-line">
-                            <span class="card-line-name">DISTRITO IND.</span>
-                            <span class="card-line-time waiting">15 MIN</span>
-                        </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-icon">
-                                <i class="ti ti-map-pin"></i>
-                            </div>
-                            <span class="card-distance">600m</span>
-                        </div>
-                        <h3 class="card-title">Hospital São José</h3>
-                        <p class="card-address">Rua Salvador de Leone</p>
-                        <div class="card-line">
-                            <span class="card-line-name">INTERMUNICIPAL</span>
-                            <span class="card-line-time waiting">22 MIN</span>
-                        </div>
-                    </div>
-                </div>
+                <div class="cards-grid" id="nearbyStops" aria-live="polite"></div>
             </section>
 
             <!-- Linhas e Horários -->
-            <section class="section">
+            <section class="section" id="linhas">
                 <h2 class="section-title" style="margin-bottom:16px;">Linhas e Horários</h2>
-                <div class="cards-grid">
-                    <!-- Circular 01 -->
-                    <div class="line-card">
-                        <div class="line-card-header">
-                            <div class="line-card-title-group">
-                                <div class="line-dot red"></div>
-                                <span class="line-card-title">Circular 01</span>
-                            </div>
-                            <i class="ti ti-map line-card-map-icon"></i>
-                        </div>
-                        <p class="line-card-route">CENTRO / VILA MARIA / SONHO NOSSO</p>
-                        <span class="line-card-schedule-label">PRÓXIMOS HORÁRIOS (CENTRO)</span>
-                        <div class="line-card-times">
-                            <span class="time-chip active">06:15</span>
-                            <span class="time-chip inactive">07:00</span>
-                            <span class="time-chip inactive">07:45</span>
-                            <span class="time-chip inactive">08:30</span>
-                        </div>
-                        <div class="line-card-progress">
-                            <div class="progress-item">
-                                <div class="progress-dot active"></div>
-                                <span class="progress-text"><strong>Ponto Atual:</strong> Garagem</span>
-                            </div>
-                            <div class="progress-item">
-                                <div class="progress-dot next"></div>
-                                <span class="progress-text">Próximo: Terminal Rodoviário</span>
-                            </div>
-                        </div>
-                        <div class="line-card-footer">
-                            <span>TABELA COMPLETA</span>
-                        </div>
-                    </div>
-                    <!-- Circular 02 -->
-                    <div class="line-card">
-                        <div class="line-card-header">
-                            <div class="line-card-title-group">
-                                <div class="line-dot gray"></div>
-                                <span class="line-card-title">Circular 02</span>
-                            </div>
-                            <i class="ti ti-map line-card-map-icon"></i>
-                        </div>
-                        <p class="line-card-route">RODOVIÁRIA / NOVA BARRA / COLINA</p>
-                        <span class="line-card-schedule-label">PRÓXIMOS HORÁRIOS (CENTRO)</span>
-                        <div class="line-card-times">
-                            <span class="time-chip inactive">06:30</span>
-                            <span class="time-chip inactive">07:38</span>
-                            <span class="time-chip inactive">08:30</span>
-                            <span class="time-chip inactive">09:30</span>
-                        </div>
-                        <div class="line-card-progress">
-                            <div class="progress-item">
-                                <div class="progress-dot gray" style="background:#666;"></div>
-                                <span class="progress-text">Início em 45 min</span>
-                            </div>
-                            <div class="progress-item">
-                                <div class="progress-dot next"></div>
-                                <span class="progress-text">Origem: Nova Barra</span>
-                            </div>
-                        </div>
-                        <div class="line-card-footer">
-                            <span>TABELA COMPLETA</span>
-                        </div>
-                    </div>
-                    <!-- Alert Card -->
-                    <div class="alert-card">
-                        <div class="alert-card-header">
-                            <span class="alert-card-title">Alertas da Rede</span>
-                            <i class="ti ti-alert-triangle"></i>
-                        </div>
-                        <p class="alert-card-body">
-                            Linha 04 operando com desvio na Rua Primeiro de Março devido a obras emergenciais.
-                        </p>
-                        <button class="alert-card-btn">DETALHES DO AVISO</button>
-                    </div>
-                </div>
+                <div class="cards-grid" id="linesGrid"></div>
             </section>
 
-            <!-- Monitoramento em Tempo Real -->
-            <section class="section">
+            <!-- Todos os Pontos -->
+            <section class="section" id="todos-pontos">
                 <div class="section-header">
-                    <h2 class="section-title">Monitoramento em Tempo Real</h2>
+                    <div>
+                        <h2 class="section-title">Todos os Pontos e Horários</h2>
+                        <p class="section-subtitle">Use a busca acima para filtrar por ponto, bairro, endereço ou linha.</p>
+                    </div>
+                    <span class="results-count" id="resultsCount">Carregando pontos...</span>
+                </div>
+                <div class="cards-grid" id="allStopsGrid" aria-live="polite"></div>
+            </section>
+
+            <!-- Mapa dos Pontos -->
+            <section class="section" id="mapa">
+                <div class="section-header">
+                    <h2 class="section-title">Mapa dos Pontos</h2>
                     <div class="map-status">
                         <div class="map-status-dot"></div>
-                        <span class="map-status-text">12 Ônibus Ativos</span>
+                        <span class="map-status-text" id="mapStatusText">Carregando mapa</span>
                     </div>
                 </div>
                 <div class="map-container">
-                    <img src="https://placehold.co/800x300/b8d4b8/b8d4b8" alt="Mapa">
-                    <div class="map-overlay">
+                    <div id="map" aria-label="Mapa com pontos de ônibus"></div>
+                    <div class="map-overlay" id="mapOverlay">
                         <p class="map-overlay-label">SELECIONADO</p>
-                        <p class="map-overlay-bus">Circular 01 - 5443</p>
-                        <p class="map-overlay-speed">Velocidade: 32km/h</p>
+                        <p class="map-overlay-bus" id="selectedStopName">Nenhum ponto selecionado</p>
+                        <p class="map-overlay-speed" id="selectedStopDetails">Clique em um card ou marcador do mapa.</p>
                         <div class="map-overlay-bar"></div>
                     </div>
                 </div>
@@ -1265,142 +1289,8 @@
         </main>
     </div>
 
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-  <script src="script.js"></script>
-
-    <script>
-        (function() {
-            // === DOM Elements ===
-            const sidebar = document.getElementById('sidebar');
-            const sidebarOverlay = document.getElementById('sidebarOverlay');
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const filterTags = document.querySelectorAll('.filter-tag');
-            const cards = document.querySelectorAll('.card, .line-card, .alert-card');
-
-            // === Sidebar Toggle ===
-            function openSidebar() {
-                sidebar.classList.add('open');
-                sidebarOverlay.classList.add('show');
-                document.body.style.overflow = 'hidden';
-            }
-            function closeSidebar() {
-                sidebar.classList.remove('open');
-                sidebarOverlay.classList.remove('show');
-                document.body.style.overflow = '';
-            }
-
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', openSidebar);
-            }
-            if (sidebarOverlay) {
-                sidebarOverlay.addEventListener('click', closeSidebar);
-            }
-
-            // Close sidebar on Escape
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && sidebar.classList.contains('open')) {
-                    closeSidebar();
-                }
-            });
-
-            // Close sidebar on window resize (desktop)
-            window.addEventListener('resize', function() {
-                if (window.innerWidth > 768) {
-                    closeSidebar();
-                }
-            });
-
-            // === Sidebar Navigation ===
-            document.querySelectorAll('.sidebar-link').forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    document.querySelectorAll('.sidebar-link').forEach(function(l) {
-                        l.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    if (window.innerWidth <= 768) closeSidebar();
-                });
-            });
-
-            // === Filter Tags ===
-            filterTags.forEach(function(tag) {
-                tag.addEventListener('click', function() {
-                    // Se for o botão "Filtros", apenas alterna
-                    if (this.querySelector('i')) {
-                        this.classList.toggle('active-filter');
-                        return;
-                    }
-                    // Outros filtros
-                    filterTags.forEach(function(t) {
-                        if (!t.querySelector('i')) t.classList.remove('active-filter');
-                    });
-                    this.classList.add('active-filter');
-                });
-            });
-
-            // === Cards Click ===
-            cards.forEach(function(card) {
-                card.addEventListener('click', function() {
-                    var title = this.querySelector('.card-title, .line-card-title, .alert-card-title');
-                    if (title) {
-                        console.log('Clicou em:', title.textContent);
-                    }
-                });
-            });
-
-            // === Hero Button ===
-            var heroBtn = document.getElementById('heroBtn');
-            if (heroBtn) {
-                heroBtn.addEventListener('click', function() {
-                    alert('Localizando ônibus em tempo real...');
-                });
-            }
-
-            // === Section Links ===
-            document.querySelectorAll('.section-link').forEach(function(link) {
-                link.addEventListener('click', function() {
-                    console.log('Ver todos:', this.closest('.section').querySelector('.section-title').textContent);
-                });
-            });
-
-            // === Line Card Footer Links ===
-            document.querySelectorAll('.line-card-footer span').forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    var lineName = this.closest('.line-card').querySelector('.line-card-title').textContent;
-                    console.log('Tabela completa:', lineName);
-                });
-            });
-
-            // === Alert Card Button ===
-            var alertBtn = document.querySelector('.alert-card-btn');
-            if (alertBtn) {
-                alertBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    alert('Detalhes do aviso:\nLinha 04 operando com desvio na Rua Primeiro de Março devido a obras emergenciais.');
-                });
-            }
-
-            // === Map Click ===
-            var mapContainer = document.querySelector('.map-container');
-            if (mapContainer) {
-                mapContainer.addEventListener('click', function() {
-                    console.log('Mapa clicado - ampliar visualização');
-                });
-            }
-
-            // === Footer Links ===
-            document.querySelectorAll('.footer-link').forEach(function(link) {
-                link.addEventListener('click', function() {
-                    console.log('Footer link:', this.textContent);
-                });
-            });
-
-            console.log('🚌 BarraBus - Transporte Público em Tempo Real - Inicializado');
-        })();
-    </script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
-```
