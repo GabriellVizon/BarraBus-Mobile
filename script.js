@@ -9,6 +9,17 @@ let horarios = [];
 // ===============================
 // CARREGAR DADOS
 // ===============================
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition((position) => {
+    const pos = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    };
+    // Centralizar e marcar a posição usando a API do Google Maps
+    map.setCenter(pos);
+    new google.maps.Marker({ position: pos, map: map });
+  });
+}
 
 async function carregarDados() {
 
@@ -26,6 +37,7 @@ async function carregarDados() {
 
     iniciarMapa();
 }
+
 
 // ===============================
 // RENDERIZAR PONTOS
