@@ -8,6 +8,9 @@
     <!-- Tabler Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
@@ -475,12 +478,29 @@
             border: 1px solid var(--border);
             border-radius: var(--radius-xl);
             overflow: hidden;
-            height: 260px;
+            height: 320px;
         }
-        .map-card img {
+        .route-map {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: 264px;
+            background: var(--bg-card);
+        }
+        .route-map .leaflet-container {
+            background: var(--bg-card);
+        }
+        .route-map .leaflet-popup-content-wrapper,
+        .route-map .leaflet-popup-tip {
+            background: #111;
+            color: #fff;
+            border: 1px solid var(--border-light);
+        }
+        .route-map .leaflet-popup-content {
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+        }
+        .route-map .leaflet-popup-content strong {
+            color: #fff;
         }
         .map-btn {
             background: var(--red);
@@ -850,7 +870,7 @@
             <aside class="content-sidebar">
                 <!-- Map Card -->
                 <div class="map-card">
-                    <img src="https://placehold.co/280x200/1a2a1a/1a2a1a" alt="Mapa da rota">
+                    <div id="routeMap" class="route-map" aria-label="Mapa dos pontos de ônibus"></div>
                     <div class="map-btn" id="mapBtn">
                         <i class="ti ti-arrows-maximize"></i>
                         <span>Ver Mapa Completo</span>
@@ -922,6 +942,7 @@
         <i class="ti ti-refresh"></i>
     </button>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         (function() {
             // === Filter Tags ===
@@ -1027,7 +1048,11 @@
                 horarios: [],
                 userPosition: null,
                 selectedFilter: 'all',
-                selectedPointId: null
+                selectedPointId: null,
+                map: null,
+                markerLayer: null,
+                userMarker: null,
+                markers: new Map()
             };
 
             var els = {
@@ -1044,6 +1069,8 @@
                 scheduleTable: document.getElementById('scheduleTable'),
                 scheduleNote: document.getElementById('scheduleNote'),
                 lineSelectText: document.getElementById('lineSelectText'),
+                routeMap: document.getElementById('routeMap'),
+                mapBtn: document.getElementById('mapBtn'),
                 stopsCard: document.querySelector('.stops-card'),
                 pointsCount: document.querySelector('.stops-count')
             };
@@ -1069,6 +1096,8 @@
                     state.linhas = data[1];
                     state.horarios = data[2];
 
+                    initMap();
+                    renderMapMarkers();
                     render();
                     requestLocation();
                 } catch (error) {
@@ -1102,6 +1131,14 @@
                     });
                 }
 
+                if (els.mapBtn) {
+                    els.mapBtn.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        event.stopImmediatePropagation();
+                        fitMapToPoints();
+                    }, true);
+                }
+
                 var fabBtn = document.getElementById('fabBtn');
                 if (fabBtn) {
                     fabBtn.addEventListener('click', function() {
@@ -1125,6 +1162,7 @@
                             lng: position.coords.longitude
                         };
                         if (els.locationStatus) els.locationStatus.textContent = 'GPS ATIVO';
+                        updateUserMarker();
                         render();
                         if (!state.selectedPointId) {
                             var nearest = getFilteredPoints('nearby')[0];
@@ -1235,10 +1273,100 @@
 
                 renderSchedule(ponto.linhaId, next.time);
                 markSelectedCard();
+                focusPointOnMap(ponto);
 
                 if (!silent) {
                     document.querySelector('.line-detail-card')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
+            }
+
+            function initMap() {
+                if (!els.routeMap || typeof L === 'undefined') return;
+
+                state.map = L.map(els.routeMap, {
+                    zoomControl: true,
+                    scrollWheelZoom: false
+                }).setView([-22.4946, -48.5588], 13);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19,
+                    attribution: '&copy; OpenStreetMap'
+                }).addTo(state.map);
+
+                state.markerLayer = L.layerGroup().addTo(state.map);
+                setTimeout(function() {
+                    state.map.invalidateSize();
+                    fitMapToPoints();
+                }, 100);
+            }
+
+            function renderMapMarkers() {
+                if (!state.map || !state.markerLayer) return;
+
+                state.markerLayer.clearLayers();
+                state.markers.clear();
+
+                state.pontos.filter(hasCoords).forEach(function(ponto) {
+                    var linha = getLinha(ponto.linhaId);
+                    var marker = L.marker([Number(ponto.lat), Number(ponto.lng)])
+                        .bindPopup(
+                            '<strong>' + escapeHtml(ponto.nome) + '</strong><br>' +
+                            escapeHtml(ponto.endereco) + '<br>' +
+                            escapeHtml(linha ? linha.nome : 'Linha') + ' - ' + escapeHtml(ponto.bairro)
+                        )
+                        .on('click', function() {
+                            selectPoint(ponto.id, true);
+                        });
+
+                    marker.addTo(state.markerLayer);
+                    state.markers.set(ponto.id, marker);
+                });
+            }
+
+            function focusPointOnMap(ponto) {
+                if (!state.map || !hasCoords(ponto)) return;
+
+                var latLng = [Number(ponto.lat), Number(ponto.lng)];
+                state.map.invalidateSize();
+                state.map.setView(latLng, 16, { animate: true });
+                var marker = state.markers.get(ponto.id);
+                if (marker) marker.openPopup();
+            }
+
+            function fitMapToPoints() {
+                if (!state.map) return;
+
+                var points = state.pontos.filter(hasCoords);
+                if (points.length === 0) return;
+
+                state.map.invalidateSize();
+                var bounds = L.latLngBounds(points.map(function(ponto) {
+                    return [Number(ponto.lat), Number(ponto.lng)];
+                }));
+
+                if (state.userPosition) {
+                    bounds.extend([state.userPosition.lat, state.userPosition.lng]);
+                }
+
+                state.map.fitBounds(bounds, { padding: [22, 22], maxZoom: 15 });
+            }
+
+            function updateUserMarker() {
+                if (!state.map || !state.userPosition) return;
+
+                var latLng = [state.userPosition.lat, state.userPosition.lng];
+                if (state.userMarker) {
+                    state.userMarker.setLatLng(latLng);
+                    return;
+                }
+
+                state.userMarker = L.circleMarker(latLng, {
+                    radius: 7,
+                    color: '#ffffff',
+                    weight: 2,
+                    fillColor: '#22c55e',
+                    fillOpacity: 1
+                }).addTo(state.map).bindPopup('<strong>Sua localização</strong>');
             }
 
             function renderSchedule(linhaId, nextTime) {
