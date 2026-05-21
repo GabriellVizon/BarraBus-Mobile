@@ -66,8 +66,8 @@
     "nome": "Supermercado Dia",
     "endereco": "Av. da Saúde, 181",
     "bairro": "Centro",
-    "lat": -22.7409058,
-    "lng": -47.3079844
+    "lat": null,
+    "lng": null
   },
   {
     "id": 8,
@@ -127,8 +127,8 @@
     "nome": "Supermercado Dia",
     "endereco": "Av. da Saúde, 181",
     "bairro": "Centro",
-    "lat": -22.7409058,
-    "lng": -47.3079844
+    "lat": null,
+    "lng": null
   },
   {
     "id": 14,
@@ -391,10 +391,22 @@
     "lat": -22.4954171,
     "lng": -48.5583633
   },
+  
   {
     "id": 40,
     "linhaId": 3,
     "ordem": 20,
+    "nome": "Hospital",
+    "endereco": "Rua Rio Branco, 301",
+    "bairro": "Centro",
+    "lat": -22.4951548,
+    "lng": -48.55645
+  },
+
+  {
+    "id": 41,
+    "linhaId": 3,
+    "ordem": 21,
     "nome": "Jaú Serve",
     "endereco": "Rua Rio Branco, 550",
     "bairro": "Centro",
@@ -402,9 +414,9 @@
     "lng": -48.5572217
   },
   {
-    "id": 41,
+    "id": 42,
     "linhaId": 3,
-    "ordem": 21,
+    "ordem": 22,
     "nome": "Banco Itaú",
     "endereco": "Rua Major Pompeu, 420",
     "bairro": "Centro",
@@ -412,9 +424,9 @@
     "lng": -48.5610173
   },
   {
-    "id": 42,
+    "id": 43,
     "linhaId": 3,
-    "ordem": 22,
+    "ordem": 23,
     "nome": "Posto do Frollini",
     "endereco": "Av. João da Silva Nogueira",
     "bairro": "Centro",
@@ -422,9 +434,9 @@
     "lng": -48.5517277
   },
   {
-    "id": 43,
+    "id": 44,
     "linhaId": 3,
-    "ordem": 23,
+    "ordem": 24,
     "nome": "Orquidário",
     "endereco": "Av. João da Silva Nogueira",
     "bairro": "Centro",
@@ -432,9 +444,9 @@
     "lng": -48.5405268
   },
   {
-    "id": 44,
+    "id": 45,
     "linhaId": 3,
-    "ordem": 24,
+    "ordem": 25,
     "nome": "Hotel Estância",
     "endereco": "Av. João da Silva Nogueira",
     "bairro": "Centro",

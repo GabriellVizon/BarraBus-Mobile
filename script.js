@@ -102,12 +102,18 @@ function setupNavigation() {
 
   document.querySelectorAll('.sidebar-link').forEach((link) => {
     link.addEventListener('click', (event) => {
+      const href = link.getAttribute('href') || '';
+
+      if (!href.startsWith('#')) {
+        return;
+      }
+
       event.preventDefault();
       document.querySelectorAll('.sidebar-link').forEach((item) => {
         item.classList.remove('active');
       });
       link.classList.add('active');
-      document.querySelector(link.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
       closeSidebar();
     });
   });
