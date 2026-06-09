@@ -37,6 +37,10 @@ const els = {
 
 document.addEventListener('DOMContentLoaded', init);
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
+}
+
 async function init() {
   setupNavigation();
   setupInteractions();
