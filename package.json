@@ -4,11 +4,10 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "build:www": "node -e \"const fs=require('fs'),path=require('path');const src=__dirname;const www=path.join(src,'www');['index.html','pontos.html','script.js','style.css','manifest.json','service-worker.js'].forEach(f=>fs.copyFileSync(path.join(src,f),path.join(www,f)));['dados','img'].forEach(d=>{const s=path.join(src,d);const t=path.join(www,d);if(fs.existsSync(t))fs.rmSync(t,{recursive:true});fs.cpSync(s,t,{recursive:true})});console.log('www atualizado')\"",
-    "cap:sync": "npm run build:www && npx cap sync",
-    "cap:open:android": "npx cap open android",
-    "cap:build:android": "npx cap build android"
-  },
+  "cap:sync": "npx cap sync",
+  "cap:open:android": "npx cap open android",
+  "cap:build:android": "npx cap build android"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GabriellVizon/Pontos-Onibus-Barra.git"
@@ -25,5 +24,8 @@
     "@capacitor/android": "^8.4.0",
     "@capacitor/cli": "^8.4.0",
     "@capacitor/core": "^8.4.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5"
   }
 }
