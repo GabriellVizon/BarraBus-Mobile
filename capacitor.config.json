@@ -8,9 +8,11 @@
   },
   "plugins": {
     "SplashScreen": {
-      "launchShowDuration": 2000,
+      "launchShowDuration": 300,
+      "launchFadeOutDuration": 200,
       "backgroundColor": "#0d0d0d",
-      "androidScaleType": "CENTER_CROP"
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false
     }
   }
 }

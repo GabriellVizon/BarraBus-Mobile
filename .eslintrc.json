@@ -41,15 +41,7 @@
     "nextOccurrenceDate": "readonly",
     "reminderTriggerDate": "readonly",
     "showToast": "readonly",
-    "Reminders": "readonly",
-    "CONFIG_HORARIOS": "readonly",
-    "BUS_STATES": "readonly",
-    "BUS_STATE_CONFIG": "readonly",
-    "getBusStateLabel": "readonly",
-    "getBusStateCssClass": "readonly",
-    "encontrarPassagens": "readonly",
-    "calcularPassagensDoPonto": "readonly",
-    "obterTextoProximoOnibus": "readonly"
+    "Reminders": "readonly"
   },
   "parserOptions": {
     "ecmaVersion": 2020,
@@ -67,12 +59,6 @@
       "files": ["js/utils.js"],
       "rules": {
         "no-unused-vars": "off"
-      }
-    },
-    {
-      "files": ["js/horarios.js"],
-      "rules": {
-        "no-unused-vars": "warn"
       }
     }
   ],

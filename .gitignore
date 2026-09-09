@@ -1,9 +1,2 @@
 node_modules/
-www/
-android/.gradle/
-android/build/
-android/captures/
-android/local.properties
-.DS_Store
-Thumbs.db
 npm-debug.log*
