@@ -6,7 +6,10 @@
         pontosPlena: [],
         horariosPlena: null,
         userPosition: null,
+<<<<<<< HEAD
         gpsDenied: (typeof getGpsDeniedPersisted === 'function') ? getGpsDeniedPersisted() : false,
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         selectedPointId: null,
         visibleCount: 5,
         visibleCountPlena: 5,
@@ -22,7 +25,11 @@
         distanceCachePlena: null,
         scheduleLinha: 'circular',
         scheduleSentidoPlena: null,
+<<<<<<< HEAD
         scheduleDiaTab: getCurrentDayType(),
+=======
+        scheduleDiaTab: 'uteis',
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         linhasDoPonto: []
     };
 
@@ -85,7 +92,10 @@
             });
         }
         setInterval(refreshLiveDepartures, 30000);
+<<<<<<< HEAD
         setInterval(verificarPermissaoLocalizacao, 5 * 60 * 1000);
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
         var cached = loadCache();
         var modalInited = false;
@@ -115,12 +125,18 @@
             if (cached) {
                 state.pontos = cached.pontos;
                 state.horarios = cached.horarios;
+<<<<<<< HEAD
                 if (typeof setPontosCircular === 'function') setPontosCircular(state.pontos);
                 if (state.distanceCache) state.distanceCache.invalidate();
                 initModalOnce();
                 hideSplash();
             } else if (els.pointsGrid) {
                 renderSkeletons(els.pointsGrid, 5);
+=======
+                if (state.distanceCache) state.distanceCache.invalidate();
+                initModalOnce();
+                hideSplash();
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
             }
 
             await loadData();
@@ -129,8 +145,13 @@
             renderMapMarkers();
             render();
             renderPlena();
+<<<<<<< HEAD
             renderScheduleCard();
             verificarPermissaoLocalizacao();
+=======
+            renderScheduleCard(null);
+            requestLocation();
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         } catch (error) {
             console.error(error);
             if (!cached) {
@@ -139,14 +160,21 @@
             if (cached) {
                 state.pontos = cached.pontos;
                 state.horarios = cached.horarios;
+<<<<<<< HEAD
                 if (typeof setPontosCircular === 'function') setPontosCircular(state.pontos);
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
                 if (state.distanceCache) state.distanceCache.invalidate();
                 initModalOnce();
                 initMap();
                 renderMapMarkers();
                 render();
                 renderPlena();
+<<<<<<< HEAD
                 verificarPermissaoLocalizacao();
+=======
+                requestLocation();
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
             } else {
                 if (els.pointsGrid) {
                     els.pointsGrid.innerHTML = '<div class="empty-state">Não foi possível carregar os pontos. Abra a página por um servidor local para o fetch funcionar.</div>';
@@ -179,8 +207,11 @@
             state.pontosPlena = Array.isArray(data[2]) ? data[2] : [];
             state.horariosPlena = data[3];
 
+<<<<<<< HEAD
             if (typeof setPontosCircular === 'function') setPontosCircular(state.pontos);
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
             if (state.horariosPlena && typeof carregarConfigPlena === 'function') {
                 carregarConfigPlena(state.horariosPlena);
             }
@@ -204,8 +235,13 @@
             renderMapMarkers();
             render();
             renderPlena();
+<<<<<<< HEAD
             renderScheduleCard();
             verificarPermissaoLocalizacao();
+=======
+            renderScheduleCard(state.selectedPointId ? state.pontos.find(function (p) { return p.id === state.selectedPointId; }) || state.pontosPlena.find(function (p) { return p.id === state.selectedPointId; }) : null);
+            requestLocation();
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
             hideSplash();
         }).catch(function () {
             hideSplash();
@@ -228,7 +264,11 @@
 
         if (els.searchMobileBtn) {
             els.searchMobileBtn.addEventListener('click', function () {
+<<<<<<< HEAD
                 toggleMobileSearch(true);
+=======
+                if (els.searchBox) els.searchBox.classList.toggle('mobile-open');
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
                 if (els.searchInput) els.searchInput.focus();
             });
         }
@@ -248,6 +288,7 @@
             }
         });
 
+<<<<<<< HEAD
         setupMobileSearchDismiss();
 
         document.addEventListener('click', function (event) {
@@ -255,6 +296,10 @@
                 hideSearchSuggestions();
                 toggleMobileSearch(false);
             }
+=======
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('.search-box')) hideSearchSuggestions();
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
             if (event.target.closest('.sidebar-link')) closeSidebar();
         });
 
@@ -268,6 +313,7 @@
                 }
                 var card = event.target.closest('[data-point-id]');
                 if (!card) return;
+<<<<<<< HEAD
                 var tapped = Number(card.dataset.pointId);
                 if (state.selectedPointId === tapped) {
                     deselectPoint(false);
@@ -275,6 +321,10 @@
                 }
                 cardClickEffect(card, function () {
                     openPointModal(tapped, 'circular');
+=======
+                cardClickEffect(card, function () {
+                    openPointModal(Number(card.dataset.pointId), 'circular');
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
                 });
             });
         }
@@ -282,6 +332,7 @@
         if (els.nearbyPriorityGrid) {
             els.nearbyPriorityGrid.addEventListener('click', function (event) {
                 var card = event.target.closest('[data-point-id]');
+<<<<<<< HEAD
                 if (!card) return;
                 var cid = Number(card.dataset.pointId);
                 if (state.selectedPointId === cid) {
@@ -289,6 +340,9 @@
                 } else {
                     selectPoint(cid, false);
                 }
+=======
+                if (card) selectPoint(Number(card.dataset.pointId), false);
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
             });
         }
         if (els.nearbyPriorityActions) {
@@ -309,6 +363,7 @@
                 }
                 var card = event.target.closest('[data-point-id]');
                 if (!card) return;
+<<<<<<< HEAD
                 var tapped = Number(card.dataset.pointId);
                 if (state.selectedPointId === tapped) {
                     deselectPoint(false);
@@ -316,6 +371,10 @@
                 }
                 cardClickEffect(card, function () {
                     openPointModal(tapped, 'plena');
+=======
+                cardClickEffect(card, function () {
+                    openPointModal(Number(card.dataset.pointId), 'plena');
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
                 });
             });
         }
@@ -446,8 +505,11 @@
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
+<<<<<<< HEAD
                 state.gpsDenied = false;
                 if (typeof setGpsDeniedPersisted === 'function') setGpsDeniedPersisted(false);
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
                 if (state.distanceCache) state.distanceCache.invalidate();
                 if (state.distanceCachePlena) state.distanceCachePlena.invalidate();
                 if (els.locationStatus) els.locationStatus.textContent = 'GPS ATIVO';
@@ -456,12 +518,19 @@
                 renderPlena();
                 selectNearestPoint();
             },
+<<<<<<< HEAD
             function (error) {
                 if (state.distanceCache) state.distanceCache.invalidate();
                 if (state.distanceCachePlena) state.distanceCachePlena.invalidate();
                 state.gpsDenied = error && error.code === error.PERMISSION_DENIED;
                 if (typeof setGpsDeniedPersisted === 'function') setGpsDeniedPersisted(state.gpsDenied);
                 if (els.locationStatus) els.locationStatus.textContent = state.gpsDenied ? 'GPS NEGADO' : 'GPS INDISPONÍVEL';
+=======
+            function () {
+                if (state.distanceCache) state.distanceCache.invalidate();
+                if (state.distanceCachePlena) state.distanceCachePlena.invalidate();
+                if (els.locationStatus) els.locationStatus.textContent = 'GPS NEGADO';
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
                 render();
                 renderPlena();
             },
@@ -469,6 +538,7 @@
         );
     }
 
+<<<<<<< HEAD
     function verificarPermissaoLocalizacao() {
         if (state.userPosition) return;
         var pedir = typeof shouldRequestLocation === 'function' ? shouldRequestLocation() : Promise.resolve(true);
@@ -485,6 +555,8 @@
         });
     }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     /* ========================================
        CIRCULAR RENDER
        ======================================== */
@@ -605,6 +677,7 @@
                 nextClass = 'waiting';
             }
         } else {
+<<<<<<< HEAD
             var circ = typeof apresentarProximaCircular === 'function'
                 ? apresentarProximaCircular(ponto.id)
                 : { encontrado: false };
@@ -615,12 +688,20 @@
                 next = { label: circ.label || 'Sem horário', minutes: Infinity, time: '--' };
                 nextClass = 'waiting';
             }
+=======
+            next = getNextDeparture(state.horarios);
+            nextClass = next.minutes <= 5 ? 'now' : 'waiting';
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         }
 
         var selected = ponto.id === state.selectedPointId ? ' selected' : '';
         var isFav = typeof Favorites !== 'undefined' && Favorites.isFavorite(String(ponto.id));
         var distancia = getDistanceText(ponto, linha);
         var dotColor = linha === 'plena' ? '#2196f3' : BUS_COLOR;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         var linhaTag = linha === 'plena'
             ? '<span class="point-line-tag plena">PLENA</span>'
             : '';
@@ -634,14 +715,22 @@
             '</div>',
             '<div class="card-header-right">',
             '<span class="point-distance">' + escapeHtml(distancia) + '</span>',
+<<<<<<< HEAD
             '<button class="fav-btn' + (isFav ? ' favorited' : '') + '" data-id="' + ponto.id + '" aria-label="' + (isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos') + '">',
+=======
+            '<button class="fav-btn' + (isFav ? ' favorited' : '') + '" data-id="' + ponto.id + '" aria-label="Favoritar">',
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
             '<i class="ti ti-' + (isFav ? 'heart-filled' : 'heart') + '"></i>',
             '</button>',
             '</div>',
             '</div>',
             '<p class="point-address">' + escapeHtml(ponto.endereco) + '</p>',
             '<div class="point-next-bus" style="border-left:3px solid ' + dotColor + '">',
+<<<<<<< HEAD
             '<span class="point-next-label"><i class="ti ti-bus" style="color:' + dotColor + '"></i> ' + (linha === 'circular' ? 'Próximo horário' : 'Próximo ônibus') + '</span>',
+=======
+            '<span class="point-next-label"><i class="ti ti-bus" style="color:' + dotColor + '"></i> Próximo ônibus</span>',
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
             '<span class="point-next-time ' + nextClass + '">' + escapeHtml(next.label) + '</span>',
             '</div>',
             '<div class="point-meta">',
@@ -679,10 +768,27 @@
         }
         if (!ponto) return;
 
+<<<<<<< HEAD
         // Cada ponto tem identidade própria: o mesmo local pode ter um ponto
         // da Circular e outro da Plena (ônibus diferentes). O modal NÃO funde
         // linhas do mesmo local — cada card abre só a sua.
         var linhas = [isPlena ? 'plena' : 'circular'];
+=======
+        var linhas = [];
+        if (isPlena) {
+            linhas.push('plena');
+            var circularPoint = state.pontos.find(function (p) {
+                return Math.abs(p.lat - ponto.lat) < 0.0005 && Math.abs(p.lng - ponto.lng) < 0.0005;
+            });
+            if (circularPoint) linhas.unshift('circular');
+        } else {
+            linhas.push('circular');
+            var plenaPoint = state.pontosPlena.find(function (p) {
+                return Math.abs(p.lat - ponto.lat) < 0.0005 && Math.abs(p.lng - ponto.lng) < 0.0005;
+            });
+            if (plenaPoint) linhas.push('plena');
+        }
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
         var next;
         if (isPlena && linhas.length === 1) {
@@ -703,6 +809,7 @@
                 next = { time: '--', label: 'Sem horário', minutes: Infinity };
             }
         } else {
+<<<<<<< HEAD
             var passC = typeof encontrarPassagens === 'function'
                 ? encontrarPassagens(ponto.id)
                 : { encontrado: false, mensagem: 'Sem horário' };
@@ -719,6 +826,12 @@
         }
 
         var horarios = isPlena ? [] : obterHorariosDoPonto(ponto.id);
+=======
+            next = getNextDeparture(state.horarios);
+        }
+
+        var horarios = isPlena ? [] : getHorario(state.horarios, getCurrentDayType());
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         var isFav = typeof Favorites !== 'undefined' && Favorites.isFavorite(String(ponto.id));
 
         var distancia = null;
@@ -778,7 +891,11 @@
 
         state.linhasDoPonto = linhas;
         state.scheduleLinha = linhas.length === 1 ? linhas[0] : 'circular';
+<<<<<<< HEAD
         state.scheduleDiaTab = getCurrentDayType();
+=======
+        state.scheduleDiaTab = 'uteis';
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
         if (state.scheduleLinha === 'plena') {
             var sentidos = typeof obterSentidosPlena === 'function' ? obterSentidosPlena(ponto.id) : [];
@@ -791,7 +908,11 @@
         if (els.selectedDistance) els.selectedDistance.textContent = getDistanceText(ponto);
         if (els.selectedAddress) els.selectedAddress.textContent = ponto.endereco + ' - ' + (ponto.bairro || '');
 
+<<<<<<< HEAD
         renderScheduleCard();
+=======
+        renderScheduleCard(ponto);
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         markSelectedCard();
         focusPointOnMap(ponto);
 
@@ -801,6 +922,7 @@
         }
     }
 
+<<<<<<< HEAD
     function deselectPoint(silent) {
         if (state.selectedPointId == null) return;
         state.selectedPointId = null;
@@ -818,6 +940,8 @@
         }
     }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     /* ========================================
        MAP
        ======================================== */
@@ -1003,6 +1127,7 @@
         if (!els.nearbyPriorityGrid) return;
         if (!state.userPosition) {
             els.nearbyPriorityGrid.style.setProperty('--nearby-columns', '1');
+<<<<<<< HEAD
             var gpsMsg = state.gpsDenied
                 ? gpsDeniedHelp()
                 : 'Permita a localização para ordenar e selecionar automaticamente o ponto mais próximo.';
@@ -1015,6 +1140,11 @@
                 var retry = els.nearbyPriorityActions.querySelector('#nearbyGpsRetry');
                 if (retry) retry.addEventListener('click', function () { verificarPermissaoLocalizacao(); });
             }
+=======
+            els.nearbyPriorityGrid.innerHTML = '<div class="nearby-priority-empty"><i class="ti ti-location"></i><span>Permita a localização para ordenar e selecionar automaticamente o ponto mais próximo.</span></div>';
+            if (els.nearbyPriorityStatus) els.nearbyPriorityStatus.textContent = 'Aguardando GPS';
+            if (els.nearbyPriorityActions) els.nearbyPriorityActions.innerHTML = '';
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
             return;
         }
         var allNearby = ordered.filter(function (p) {
@@ -1052,6 +1182,18 @@
        SCHEDULE CARD (Circular + Plena)
        ======================================== */
 
+<<<<<<< HEAD
+=======
+    function subtractMinutes(timeStr, minutes) {
+        var parts = timeStr.split(':');
+        var total = parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10) - minutes;
+        if (total < 0) total += 1440;
+        var h = Math.floor(total / 60);
+        var m = total % 60;
+        return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
+    }
+
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     function computeNextForSchedule() {
         if (state.scheduleLinha === 'plena' && state.scheduleSentidoPlena) {
             if (state.selectedPointId && typeof encontrarPassagensPlena === 'function') {
@@ -1100,6 +1242,7 @@
             }
             return { time: '--', label: 'Sem horário', minutes: Infinity };
         }
+<<<<<<< HEAD
         // A tabela e o resumo usam a mesma seleção de dia. Em outro dia, não há contagem relativa a agora.
         if (state.scheduleLinha === 'circular' && state.scheduleDiaTab !== getCurrentDayType()) {
             return { time: '--', label: state.scheduleDiaTab === 'domingo' ? 'Não opera aos domingos' : 'Consultando outro dia', minutes: Infinity };
@@ -1125,17 +1268,36 @@
 
         if (els.selectedLine) {
             els.selectedLine.textContent = state.scheduleLinha === 'plena' ? 'Plena' : 'Rota Circular';
+=======
+        return getNextDeparture(state.horarios);
+    }
+
+    function renderScheduleCard(ponto) {
+        var next = computeNextForSchedule();
+
+        if (els.selectedLine) {
+            if (state.selectedPointId) {
+                els.selectedLine.textContent = state.scheduleLinha === 'plena' ? 'Plena' : 'Rota Circular';
+            } else {
+                els.selectedLine.textContent = state.scheduleLinha === 'plena' ? 'Plena' : 'Rota Circular';
+            }
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         }
         if (els.selectedNext) els.selectedNext.textContent = state.selectedPointId ? next.label : 'Selecione um ponto';
 
         renderLineSelector();
         renderDirectionSelector();
+<<<<<<< HEAD
         renderScheduleTable();
 
         if (state.scheduleLinha === 'circular') {
             if (els.scheduleNote) els.scheduleNote.textContent = '';
             return;
         }
+=======
+        renderScheduleTable(next.time);
+
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         if (els.scheduleNote) {
             if (state.selectedPointId && next.time && next.time !== '--') {
                 els.scheduleNote.textContent = 'Horário destacado indica a próxima saída.';
@@ -1185,8 +1347,13 @@
                     state.scheduleSentidoPlena = null;
                 }
 
+<<<<<<< HEAD
                 state.scheduleDiaTab = getCurrentDayType();
                 renderScheduleCard();
+=======
+                state.scheduleDiaTab = 'uteis';
+                renderScheduleCard(null);
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
             });
         });
     }
@@ -1224,12 +1391,18 @@
         btnsContainer.querySelectorAll('.schedule-sel-btn').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 state.scheduleSentidoPlena = this.getAttribute('data-sentido');
+<<<<<<< HEAD
                 state.scheduleDiaTab = getCurrentDayType();
                 renderScheduleCard();
+=======
+                state.scheduleDiaTab = 'uteis';
+                renderScheduleCard(null);
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
             });
         });
     }
 
+<<<<<<< HEAD
     function renderScheduleTable() {
         var container = els.scheduleDynamicContent;
         if (!container) return;
@@ -1246,6 +1419,11 @@
             if (expand) expand.addEventListener('click', function () { state.scheduleExpanded = !state.scheduleExpanded; renderScheduleTable(); });
             return;
         }
+=======
+    function renderScheduleTable(nextTime) {
+        var container = els.scheduleDynamicContent;
+        if (!container) return;
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         var html = '', abas = [], horarios = [];
         if (state.scheduleLinha === 'plena' && state.scheduleSentidoPlena) {
             if (state.selectedPointId && typeof obterAbasDiaPlena === 'function') abas = obterAbasDiaPlena(state.scheduleSentidoPlena,state.selectedPointId);
@@ -1256,6 +1434,7 @@
             if (state.selectedPointId && typeof obterHorariosPlena === 'function') horarios=obterHorariosPlena(state.scheduleSentidoPlena,state.scheduleDiaTab,state.selectedPointId);
             if(!horarios.length&&CONFIG_PLENA&&CONFIG_PLENA.sentidos){var sh=CONFIG_PLENA.sentidos.find(function(x){return x.id===state.scheduleSentidoPlena;});var lista=sh&&sh.horarios?sh.horarios[state.scheduleDiaTab]:[];if(Array.isArray(lista))horarios=lista.slice();}
         } else {
+<<<<<<< HEAD
             if (typeof diasComHorariosCircular === 'function') {
                 abas = diasComHorariosCircular();
             } else if (state.horarios) {
@@ -1268,6 +1447,10 @@
             } else if (state.horarios) {
                 horarios = getHorario(state.horarios, state.scheduleDiaTab);
             }
+=======
+            if(state.horarios){['uteis','sabado','domingo'].forEach(function(id){if(state.horarios[id]&&state.horarios[id].length)abas.push({id:id,nome:id==='uteis'?'Dias Úteis':id==='sabado'?'Sábado':'Domingo'});});}
+            horarios=getHorario(state.horarios,state.scheduleDiaTab);
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         }
         if(abas.length>1){html+='<div class="schedule-day-tabs">';abas.forEach(function(a){html+='<button class="schedule-day-tab'+(a.id===state.scheduleDiaTab?' active':'')+'" data-dia="'+a.id+'">'+escapeHtml(a.nome)+'</button>';});html+='</div>';}
         if(!horarios.length) html+='<div class="schedule-empty-msg">Sem horários disponíveis para este dia.</div>';
@@ -1346,6 +1529,7 @@
     }
 
     function refreshLiveDepartures() {
+<<<<<<< HEAD
         if (typeof CONFIG_HORARIOS === 'undefined' && state.scheduleLinha !== 'plena') return;
 
         if (state.scheduleLinha === 'circular') {
@@ -1358,6 +1542,10 @@
                 if (expand) expand.addEventListener('click', function () { state.scheduleExpanded = !state.scheduleExpanded; renderScheduleTable(); });
             }
         }
+=======
+        if (!state.horarios && state.scheduleLinha !== 'plena') return;
+
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         if (state.selectedPointId != null) {
             var ponto = state.pontos.find(function (p) { return p.id === state.selectedPointId; })
                 || state.pontosPlena.find(function (p) { return p.id === state.selectedPointId; });
@@ -1374,6 +1562,7 @@
             }
         }
 
+<<<<<<< HEAD
         document.querySelectorAll('.point-card').forEach(function (card) {
             var cardId = Number(card.getAttribute('data-point-id'));
             var cardLinha = card.getAttribute('data-linha') || 'circular';
@@ -1408,6 +1597,12 @@
             if (rangeEl) {
                 rangeEl.textContent = circ && circ.encontrado && circ.faixa ? '≈ ' + circ.faixa.label : '';
             }
+=======
+        var fallbackNext = getNextDeparture(state.horarios);
+        document.querySelectorAll('.point-next-time').forEach(function (el) {
+            el.textContent = fallbackNext.label;
+            el.className = 'point-next-time ' + (fallbackNext.minutes <= 5 ? 'now' : 'waiting');
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         });
     }
 

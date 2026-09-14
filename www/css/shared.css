@@ -10,6 +10,7 @@
     --bg-hover: #1e1e1e;
     --border: #2a2a2a;
     --border-light: #2a2a2a;
+<<<<<<< HEAD
 --red: #e53935;
     --red-light: #ff5252;
     --red-dark: #8b0000;
@@ -17,6 +18,12 @@
     --blue-light: #42a5f5;
     --blue-dark: #1565c0;
     --blue-bg: rgba(33, 150, 243, 0.12);
+=======
+    --red: #e53935;
+    --red-light: #ff5252;
+    --red-dark: #8b0000;
+    --yellow: #e8f44d;
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     --green: #4caf50;
     --text-primary: #ffffff;
     --text-secondary: #aaaaaa;
@@ -27,7 +34,10 @@
     --radius-xl: 20px;
     --radius-full: 24px;
     --shadow-red: 0 4px 12px rgba(229, 57, 53, 0.4);
+<<<<<<< HEAD
     --shadow-blue: 0 4px 12px rgba(33, 150, 243, 0.4);
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 }
 
 /* ===================== BASE RESET ===================== */
@@ -422,7 +432,10 @@ body.modal-open {
     --bg-hover: #fde8e8;
     --border: #d4d4d4;
     --border-light: #d4d4d4;
+<<<<<<< HEAD
     --blue-bg: #e3f2fd;
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     --text-primary: #000000;
     --text-secondary: #333333;
     --text-muted: #666666;
@@ -496,6 +509,7 @@ body.modal-open {
     color: #333333;
 }
 
+<<<<<<< HEAD
 /* ===== SPLASH no modo claro ===== */
 [data-theme="light"] .splash-logo-img {
     content: url('../img/realista-point.modoclaro.png');
@@ -512,6 +526,8 @@ body.modal-open {
     animation: splashShimmer 2.6s linear infinite;
 }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 /* ===================== MODAL ===================== */
 .modal-overlay {
     position: fixed;
@@ -720,7 +736,10 @@ body.modal-open {
     font-weight: 800;
     color: #fff;
     line-height: 1;
+<<<<<<< HEAD
     white-space: nowrap;
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 }
 
 .next-bus-pill {
@@ -870,7 +889,11 @@ body.modal-open {
     flex: 1;
     min-width: 60px;
     padding: 8px 0;
+<<<<<<< HEAD
     background: var(--blue-bg);
+=======
+    background: var(--bg-hover);
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     color: var(--text-primary);
     border: 1px solid var(--border-light);
     border-radius: var(--radius-md);
@@ -1071,6 +1094,7 @@ body.modal-open {
     box-shadow: var(--shadow-red);
 }
 
+<<<<<<< HEAD
 /* Plena: acentos azuis no modal (Circular fica vermelho, o padrão) */
 .modal-overlay.plena-theme .next-bus-card {
     box-shadow: var(--shadow-blue);
@@ -1108,6 +1132,8 @@ body.modal-open {
     box-shadow: var(--shadow-blue);
 }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 .tab-empty {
     color: var(--text-muted);
     font-size: 13px;
@@ -1280,16 +1306,24 @@ body.modal-open {
         padding: 14px;
     }
     .next-bus-time {
+<<<<<<< HEAD
         font-size: 28px;
     }
     .next-bus-main i {
         font-size: 28px;
+=======
+        font-size: 32px;
+    }
+    .next-bus-main i {
+        font-size: 32px;
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     }
     .modal-mini-map {
         height: 160px;
     }
 }
 
+<<<<<<< HEAD
 @media (max-width: 360px) {
     .next-bus-main {
         gap: 8px;
@@ -1302,6 +1336,8 @@ body.modal-open {
     }
 }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 /* ===================== SPLASH SCREEN ===================== */
 .splash {
     position: fixed;
@@ -1674,7 +1710,10 @@ body:has(.fab) .back-to-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
+<<<<<<< HEAD
     gap: 10px;
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     background: var(--bg-hover);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
@@ -1703,11 +1742,17 @@ body:has(.fab) .back-to-top {
 .card-next-time {
     font-size: 16px;
     font-weight: 800;
+<<<<<<< HEAD
     line-height: 1.3;
     white-space: nowrap;
     text-align: right;
     flex-shrink: 1;
     min-width: 0;
+=======
+    line-height: 1;
+    white-space: nowrap;
+    flex-shrink: 0;
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 }
 
 .card-next-time.now {
@@ -1718,6 +1763,7 @@ body:has(.fab) .back-to-top {
     color: var(--red);
 }
 
+<<<<<<< HEAD
 @media (max-width: 1024px) {
     .card-next-time {
         font-size: 15px;
@@ -1740,6 +1786,8 @@ body:has(.fab) .back-to-top {
     }
 }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 .card-meta {
     display: flex;
     flex-wrap: wrap;
@@ -1757,6 +1805,7 @@ body:has(.fab) .back-to-top {
     padding: 4px 8px;
 }
 
+<<<<<<< HEAD
 .meta-chip.range-chip {
     color: var(--text-secondary-muted, var(--text-secondary));
     font-weight: 500;
@@ -1801,6 +1850,8 @@ body:has(.fab) .back-to-top {
     .estimate-notice i { color: #f7ec78; }
 }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 /* ===================== CARD ACTIONS ===================== */
 .card-actions {
     display: flex;
@@ -1883,6 +1934,7 @@ body:has(.fab) .back-to-top {
     border: 1px solid var(--border);
 }
 
+<<<<<<< HEAD
 .time-chip.more-chip {
     background: transparent;
     color: var(--text-secondary);
@@ -1890,6 +1942,8 @@ body:has(.fab) .back-to-top {
     font-weight: 600;
 }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 /* ===================== LEAFLET POPUP ===================== */
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
@@ -2000,6 +2054,7 @@ select:focus-visible,
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
     }
 }
+<<<<<<< HEAD
 
 /* ===================== MOBILE SEARCH BACKDROP ===================== */
 .search-backdrop {
@@ -2138,3 +2193,5 @@ select:focus-visible,
 .schedule-history[open] > summary { border-color:var(--red); }
 .schedule-history > .circular-times { margin:10px 0 0; }
 @media(max-width:400px) { .schedule-history > summary { gap:8px; padding:12px; } .history-show,.schedule-history[open] .history-hide { display:none; } }
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb

@@ -9,7 +9,11 @@ android {
 
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
+<<<<<<< HEAD
 
+=======
+    implementation project(':capacitor-splash-screen')
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
 }
 

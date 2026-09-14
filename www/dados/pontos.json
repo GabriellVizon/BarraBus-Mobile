@@ -67,7 +67,11 @@
     "ordem": 53,
     "nome": "Atrás do Antigo James",
     "endereco": "60 R. Natale Petri",
+<<<<<<< HEAD
     "bairro": "Recanto Regina",
+=======
+    "bairro": "",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "lat": -22.4848165,
     "lng": -48.5657136
   },
@@ -76,7 +80,11 @@
     "ordem": 54,
     "nome": "Praça Francisco Lourenção",
     "endereco": "810 R. Hilário Parezan",
+<<<<<<< HEAD
     "bairro": "CECAP",
+=======
+    "bairro": "",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "lat": -22.4814379,
     "lng": -48.5645534
   },
@@ -85,7 +93,11 @@
     "ordem": 55,
     "nome": "KIVERTRON (Em Frente)",
     "endereco": "801 Av. Dr. José Erineu Ortigosa",
+<<<<<<< HEAD
     "bairro": "Distrito Industrial I",
+=======
+    "bairro": "",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "lat": -22.4802459,
     "lng": -48.567691
   },
@@ -138,7 +150,11 @@
     "id": 15,
     "ordem": 15,
     "nome": "Banca de Calçados",
+<<<<<<< HEAD
     "endereco": "R. João Morelato, 198 - Conj. Res. Cel. Jose V. Franca III",
+=======
+    "endereco": "Rua João Morelatto",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "bairro": "Sonho Nosso",
     "lat": -22.464936,
     "lng": -48.5631282
@@ -319,7 +335,11 @@
     "ordem": 38,
     "nome": "Esquina com a Rua Papa João",
     "endereco": "130 R. Geraldo Salvi",
+<<<<<<< HEAD
     "bairro": "Sonho Nosso I",
+=======
+    "bairro": "",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "lat": -22.46784,
     "lng": -48.5634339
   },
@@ -328,7 +348,11 @@
     "ordem": 39,
     "nome": "Esquina com a Rua Célso Sebastião",
     "endereco": "135 R. Antônio Destro",
+<<<<<<< HEAD
     "bairro": "Sonho Nosso I",
+=======
+    "bairro": "",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "lat": -22.4609828,
     "lng": -48.5642422
   },
@@ -337,7 +361,11 @@
     "ordem": 40,
     "nome": "Atrás do campinho",
     "endereco": "191 R. Erasmo Balde",
+<<<<<<< HEAD
     "bairro": "Sonho Nosso I",
+=======
+    "bairro": "",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "lat": -22.4687679,
     "lng": -48.560438
   },
@@ -346,16 +374,26 @@
     "ordem": 41,
     "nome": "Em frente a casa Nº 160",
     "endereco": "160 R. Júlio Guiraldello",
+<<<<<<< HEAD
     "bairro": "Núcleo Habitacional",
+=======
+    "bairro": "",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "lat": -22.4694253,
     "lng": -48.5574296
   },
   {
     "id": 42,
     "ordem": 42,
+<<<<<<< HEAD
     "nome": "Em frente ao SADH",
     "endereco": "200 R. Dirce Manfrinato Romanin",
     "bairro": "Núcleo Habitacional",
+=======
+    "nome": "Em frente ao SADH", 
+    "endereco": "200 R. Dirce Manfrinato Romanin",
+    "bairro": "",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "lat": -22.4679933,
     "lng": -48.5578317
   },
@@ -364,7 +402,11 @@
     "ordem": 43,
     "nome": "Em frente a casa Nº 669",
     "endereco": "678 R. Leonardo de Águiar",
+<<<<<<< HEAD
     "bairro": "Núcleo Habitacional",
+=======
+    "bairro": "",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "lat": -22.4665661,
     "lng": -48.5590907
   },
@@ -373,7 +415,11 @@
     "ordem": 44,
     "nome": "Esquina com a Rua Jorge Pedrola",
     "endereco": "531 R. Leonardo de Águiar",
+<<<<<<< HEAD
     "bairro": "Sonho Nosso I",
+=======
+    "bairro": "",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "lat": -22.4666527,
     "lng": -48.5604775
   },
@@ -382,7 +428,11 @@
     "ordem": 45,
     "nome": "Divinitos",
     "endereco": "198 Rua João Morelato",
+<<<<<<< HEAD
     "bairro": "Conj. Res. Cel. Jose V. Franca III",
+=======
+    "bairro": "",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "lat": -22.464936,
     "lng": -48.5631282
   },
@@ -391,14 +441,22 @@
     "ordem": 46,
     "nome": "Atrás da Igreja",
     "endereco": "500 R. Roberto Chiaratto",
+<<<<<<< HEAD
     "bairro": "Conj. Res. Cel. Jose V. Franca III",
+=======
+    "bairro": "",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "lat": -22.4646541,
     "lng": -48.562289
   },
   {
     "id": 47,
     "ordem": 47,
+<<<<<<< HEAD
     "nome": "R. Mario Andréoli",
+=======
+    "nome": "Matagal?",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "endereco": "245 R. Mario Andréoli",
     "bairro": "Sonho Nosso III",
     "lat": -22.4643277,
@@ -407,9 +465,15 @@
   {
     "id": 48,
     "ordem": 48,
+<<<<<<< HEAD
     "nome": "Bar ao lado do Hair Nail Studio",
     "endereco": "549 R. Mario Andréoli",
     "bairro": "Sonho Nosso V",
+=======
+    "nome": "Barzinho",
+    "endereco": "549 R. Mario Andréoli",
+    "bairro": "Sonho Nosso III",
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     "lat": -22.4617194,
     "lng": -48.5602614
   },

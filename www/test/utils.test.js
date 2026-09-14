@@ -174,6 +174,7 @@ test('createDistanceCache calcula e invalida com nova posição', () => {
   const all2 = cache.getAll();
   assert.notStrictEqual(all2[0].distancia, all[0].distancia);
 });
+<<<<<<< HEAD
 
 test('gpsDenied persiste o estado de recusa entre sessões', () => {
   setGpsDeniedPersisted(true);
@@ -198,3 +199,5 @@ test('shouldRequestLocation permite pedir quando não há Permissions API', asyn
   });
   assert.strictEqual(await shouldRequestLocation(), true);
 });
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb

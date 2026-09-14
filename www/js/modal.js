@@ -6,8 +6,11 @@
   var currentData = null;
   var currentTab = 'horarios';
   var liveTimer = null;
+<<<<<<< HEAD
   var routeState = {};
   var returnFocus = null;
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
   var modalState = {
     linhaSelecionada: 'circular',
@@ -30,7 +33,11 @@
     modalEl.className = 'modal-overlay';
     modalEl.innerHTML =
       '<div class="modal-backdrop"></div>' +
+<<<<<<< HEAD
       '<div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalAddress">' +
+=======
+      '<div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modalTitle">' +
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         '<div class="modal-header">' +
           '<div class="modal-header-text">' +
             '<h2 class="modal-title" id="modalTitle"></h2>' +
@@ -59,6 +66,7 @@
           '</div>' +
         '</div>' +
       '</div>';
+<<<<<<< HEAD
     var bar = modalEl.querySelector('.modal-tab-bar');
     bar.setAttribute('role','tablist');
     bar.setAttribute('aria-label','Detalhes do ponto');
@@ -70,6 +78,8 @@
     var panel=modalEl.querySelector('#modalTabContent');
     panel.setAttribute('role','tabpanel');
     panel.setAttribute('tabindex','0');
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     document.body.appendChild(modalEl);
   }
 
@@ -86,7 +96,10 @@
       Favorites.toggleFavorite(id);
       var isFav = Favorites.isFavorite(id);
       this.classList.toggle('favorited', isFav);
+<<<<<<< HEAD
       this.setAttribute('aria-label', isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos');
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
       var icon = this.querySelector('i');
       if (icon) {
         icon.classList.remove('ti-heart', 'ti-heart-filled');
@@ -98,6 +111,7 @@
       if (onFavToggleCallback) onFavToggleCallback(id);
     });
 
+<<<<<<< HEAD
     var tabBtns = Array.from(modalEl.querySelectorAll('.modal-tab-btn'));
     tabBtns.forEach(function(btn,index){
       btn.addEventListener('click',function(){ activateTab(btn.dataset.tab); });
@@ -116,6 +130,25 @@
     var bar=modalEl.querySelector('.modal-tab-bar');
     body.scrollTop+=bar.getBoundingClientRect().top-body.getBoundingClientRect().top;
     if(tab==='horarios'&&miniMap)requestAnimationFrame(function(){miniMap.invalidateSize();});
+=======
+    var tabBtns = modalEl.querySelectorAll('.modal-tab-btn');
+    var tabContent = modalEl.querySelector('#modalTabContent');
+    for (var i = 0; i < tabBtns.length; i++) {
+      tabBtns[i].addEventListener('click', function () {
+        var newTab = this.getAttribute('data-tab');
+        if (newTab === currentTab) return;
+        for (var j = 0; j < tabBtns.length; j++) tabBtns[j].classList.remove('active');
+        this.classList.add('active');
+        currentTab = newTab;
+        if (!currentData) return;
+        tabContent.style.opacity = '0';
+        setTimeout(function () {
+          renderTabContent(currentData, currentTab);
+          tabContent.style.opacity = '1';
+        }, 200);
+      });
+    }
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   }
 
   function onKeyDown(e) {
@@ -124,9 +157,15 @@
   }
 
   function trapFocus(e) {
+<<<<<<< HEAD
     var focusable = Array.from(modalEl.querySelectorAll(
       'button:not([disabled]):not([tabindex="-1"]), [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     )).filter(function(el){return el.getClientRects().length && getComputedStyle(el).visibility!=='hidden';});
+=======
+    var focusable = modalEl.querySelectorAll(
+      'button:not([disabled]), [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     if (focusable.length === 0) return;
     var first = focusable[0];
     var last = focusable[focusable.length - 1];
@@ -141,6 +180,7 @@
     return modalEl && modalEl.classList.contains('open');
   }
 
+<<<<<<< HEAD
   function applyPlenaTheme() {
     modalEl.classList.toggle('plena-theme', modalState.linhaSelecionada === 'plena');
   }
@@ -148,6 +188,9 @@
   function open(data) {
     returnFocus = document.activeElement;
     routeState = {};
+=======
+  function open(data) {
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     currentData = data;
     currentTab = 'horarios';
     var tabBtns = modalEl.querySelectorAll('.modal-tab-btn');
@@ -161,7 +204,10 @@
 
     modalState.linhaSelecionada = linhaInicial;
     modalState.linhasDisponiveis = linhas;
+<<<<<<< HEAD
     applyPlenaTheme();
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
     if (linhaInicial === 'plena') {
       var sentidos = typeof obterSentidosPlena === 'function'
@@ -215,12 +261,15 @@
     liveTimer = null;
     destroyMiniMap();
     if (onCloseCallback) onCloseCallback();
+<<<<<<< HEAD
     function available(el){return el && el.isConnected && !el.closest('.modal-overlay') && el.getClientRects().length && getComputedStyle(el).visibility!=='hidden';}
     var target=returnFocus;
     if(!available(target)) {
       target=Array.from(document.querySelectorAll('#searchMobileBtn, #searchInput, #mobileMenuBtn')).find(available);
     }
     if(target)target.focus({preventScroll:true});
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   }
 
   function updateLive() {
@@ -260,6 +309,7 @@
       }
       return { time: '--', label: 'Sem dados', minutes: Infinity };
     }
+<<<<<<< HEAD
     // CIRCULAR: referências parciais por ponto — usa o tipo de dia atual, igual à
     // lista de horários exibida (diaTabPlena pertence à Plena).
     if (typeof encontrarPassagens === 'function') {
@@ -275,6 +325,8 @@
       }
       return { time: '--', label: pass.mensagem || 'Sem horário', minutes: Infinity, situacao: pass.situacao, faixa: null };
     }
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     return getNextDeparture(currentData.horarios);
   }
 
@@ -287,7 +339,10 @@
     var favBtn = modalEl.querySelector('#modalFavBtn');
     favBtn.setAttribute('data-id', data.ponto.id);
     favBtn.classList.toggle('favorited', !!data.isFav);
+<<<<<<< HEAD
     favBtn.setAttribute('aria-label', data.isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos');
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     var icon = favBtn.querySelector('i');
     if (icon) {
       icon.classList.remove('ti-heart', 'ti-heart-filled');
@@ -331,7 +386,10 @@
 
   function onLinhaChange() {
     var linha = modalState.linhaSelecionada;
+<<<<<<< HEAD
     applyPlenaTheme();
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
     renderLineSelector();
 
@@ -411,7 +469,11 @@
 
   function renderNextBus(data) {
     var el = modalEl.querySelector('#modalNextBus');
+<<<<<<< HEAD
     var next = modalState.linhaSelecionada === 'circular' ? apresentarProximaCircular(data.ponto.id) : (data.next || computeNextForModal());
+=======
+    var next = data.next || computeNextForModal();
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     var nextLabel = next ? next.label : '--';
 
     var pillName;
@@ -424,6 +486,7 @@
 
     var pillColor = modalState.linhaSelecionada === 'plena' ? '#2196f3' : '';
 
+<<<<<<< HEAD
     var faixaHtml = (modalState.linhaSelecionada === 'plena' && next && next.faixa)
       ? '<div class="next-bus-faixa" title="Intervalo aproximado dos registros; não é garantia">&#8776; ' + escapeHtml(next.faixa.label) + '</div>'
       : '';
@@ -432,16 +495,29 @@
       '<div class="next-bus-card"' + (pillColor ? ' style="background:' + pillColor + '"' : '') + '>' +
         '<div class="next-bus-left">' +
           '<span class="next-bus-label">' + (modalState.linhaSelecionada === 'circular' ? 'Próximo horário' : 'Próximo ônibus') + '</span>' +
+=======
+    el.innerHTML =
+      '<div class="next-bus-card"' + (pillColor ? ' style="background:' + pillColor + '"' : '') + '>' +
+        '<div class="next-bus-left">' +
+          '<span class="next-bus-label">Pr&oacute;ximo &ocirc;nibus</span>' +
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
           '<div class="next-bus-main">' +
             '<i class="ti ti-bus"></i>' +
             '<span class="next-bus-time">' + escapeHtml(nextLabel) + '</span>' +
           '</div>' +
+<<<<<<< HEAD
           faixaHtml +
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         '</div>' +
         '<div class="next-bus-pill">' +
           '<span class="next-bus-pill-name">' + escapeHtml(pillName) + '</span>' +
         '</div>' +
+<<<<<<< HEAD
       '</div>' + (modalState.linhaSelecionada === 'circular' ? '<p class="circular-notice">' + escapeHtml(CircularUI.aviso) + '</p>' : '');
+=======
+      '</div>';
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   }
 
   function renderInfoRow(data) {
@@ -484,10 +560,13 @@
   function renderReminderState(data) {
     var wrap = modalEl.querySelector('#modalReminderWrap');
     if (!wrap) return;
+<<<<<<< HEAD
     if (modalState.linhaSelecionada === 'circular') {
       wrap.innerHTML = '';
       return;
     }
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     if (typeof Reminders === 'undefined') { wrap.innerHTML = ''; return; }
 
     var stopId = data.ponto.id;
@@ -557,6 +636,7 @@
   function renderTabContent(data, tab) {
     var el = modalEl.querySelector('#modalTabContent');
     if (!el) return;
+<<<<<<< HEAD
     modalEl.classList.toggle('show-route',tab==='percurso');
     modalEl.querySelectorAll('.modal-tab-btn').forEach(function(btn){
       var active=btn.dataset.tab===tab;
@@ -565,6 +645,8 @@
       btn.tabIndex=active?0:-1;
     });
     el.setAttribute('aria-labelledby','modal-tab-'+tab);
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     if (tab === 'horarios') {
       renderScheduleTab(el, data);
     } else {
@@ -583,12 +665,36 @@
   }
 
   function renderScheduleCircular(el, data) {
+<<<<<<< HEAD
     var old = el.querySelector('details'), opened = old && old.open;
     el.innerHTML = CircularUI.schedule(data.ponto.id, getCurrentDayType(), true);
     var details = el.querySelector('details'); if (details && opened) details.open = true;
   }
 
     function renderSchedulePlena(el, data) {
+=======
+    var horarios = data.horarios;
+    if (!horarios || horarios.length === 0) {
+      var emptyMsg = getCurrentDayType() === 'domingo'
+        ? 'Não há operação aos domingos.'
+        : 'Nenhum horário disponível.';
+      el.innerHTML = '<p class="tab-empty">' + escapeHtml(emptyMsg) + '</p>';
+      return;
+    }
+    var nextTime = data.next ? data.next.time : null;
+    var times = horarios.map(function (t) {
+      var cls = t === nextTime ? ' modal-time-active' : '';
+      return '<span class="modal-time' + cls + '">' + escapeHtml(t) + '</span>';
+    }).join('');
+    el.innerHTML =
+      '<div class="schedule-group">' +
+        '<div class="schedule-line-label"><span class="schedule-dot" style="background:' + (data.lineColor || BUS_COLOR) + '"></span>Rota Circular</div>' +
+        '<div class="modal-times-grid">' + times + '</div>' +
+      '</div>';
+  }
+
+  function renderSchedulePlena(el, data) {
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     var html = '';
 
     if (modalState.sentidosPlena.length > 1) {
@@ -669,10 +775,13 @@
   }
 
   function renderRouteTab(el, data) {
+<<<<<<< HEAD
     if (modalState.linhaSelecionada === 'circular') {
       routeState=CircularRoute.mount(el,data,routeState);
       return;
     }
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     var allLinePoints;
     if (modalState.linhaSelecionada === 'plena') {
       var sentido = modalState.sentidosPlena.find(function (s) { return s.id === modalState.sentidoPlena; });

@@ -37,11 +37,14 @@
 }
 
 /* ========== LINE DETAIL CARD ========== */
+<<<<<<< HEAD
 .estimate-notice {
     margin: 0 0 24px;
     font-size: 15px;
 }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 .line-detail-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border);
@@ -470,6 +473,7 @@
     background: var(--bg-hover);
 }
 
+<<<<<<< HEAD
 .point-card[data-linha="plena"]:hover,
 .point-card[data-linha="plena"].selected {
     border-color: var(--blue);
@@ -481,6 +485,8 @@
     border-color: rgba(33, 150, 243, 0.25);
 }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 .point-card-header {
     display: flex;
     align-items: center;
@@ -514,7 +520,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+<<<<<<< HEAD
     gap: 10px;
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     background: var(--bg-hover);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
@@ -544,11 +553,17 @@
 .point-next-time {
     font-size: 16px;
     font-weight: 800;
+<<<<<<< HEAD
     line-height: 1.3;
     white-space: nowrap;
     text-align: right;
     flex-shrink: 1;
     min-width: 0;
+=======
+    line-height: 1;
+    white-space: nowrap;
+    flex-shrink: 0;
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 }
 
 .point-next-time.now {
@@ -575,12 +590,15 @@
     font-weight: 600;
 }
 
+<<<<<<< HEAD
 .point-chip.range-chip {
     font-weight: 500;
     font-size: 10px;
     white-space: nowrap;
 }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 /* ========== SHOW MORE ========== */
 .show-more-container {
     display: flex;
@@ -727,10 +745,13 @@
     .info-cards {
         flex-direction: column;
     }
+<<<<<<< HEAD
 
     .point-next-time {
         font-size: 15px;
     }
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 }
 
 @media (max-width: 768px) {
@@ -765,6 +786,7 @@
         padding: 6px 10px;
         font-size: 11px;
     }
+<<<<<<< HEAD
 
     .point-next-time {
         font-size: 14px;
@@ -774,6 +796,8 @@
         font-size: 10px;
         letter-spacing: 0.02em;
     }
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 }
 
 @media (max-width: 480px) {
@@ -785,10 +809,13 @@
     .schedule-row {
         padding: 10px 12px;
     }
+<<<<<<< HEAD
 
     .point-next-time {
         font-size: 13px;
     }
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 }
 
 /* ========== LINE DIVIDER ========== */
@@ -1226,23 +1253,32 @@ body {
     justify-content: center;
     gap: 10px;
     min-height: 86px;
+<<<<<<< HEAD
     padding: 16px;
     color: var(--text-muted);
     font-size: 12px;
     line-height: 1.5;
     text-align: left;
+=======
+    color: var(--text-muted);
+    font-size: 12px;
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     border: 1px dashed var(--border);
     border-radius: var(--radius-md)
 }
 
 .nearby-priority-empty i {
     color: var(--red);
+<<<<<<< HEAD
     font-size: 20px;
     flex-shrink: 0
 }
 
 .nearby-priority-empty span {
     max-width: 640px
+=======
+    font-size: 20px
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 }
 
 .other-points-section {
@@ -1350,6 +1386,7 @@ body {
     gap: 8px
 }
 
+<<<<<<< HEAD
 #scheduleDynamicContent {
     animation: scheduleFadeIn 0.25s ease both;
 }
@@ -1370,6 +1407,8 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 .schedule-time-card {
     min-width: 0;
     min-height: 100px;
@@ -1412,6 +1451,7 @@ body {
     font-weight: 700
 }
 
+<<<<<<< HEAD
 /* Plena: acentos azuis na tabela de horários (Circular fica vermelho, o padrão) */
 .line-detail-card.is-plena .schedule-sel-btn:hover {
     border-color: var(--blue);
@@ -1446,6 +1486,8 @@ body {
     color: var(--text-primary);
 }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 .schedule-actions {
     display: flex;
     flex-direction: column;

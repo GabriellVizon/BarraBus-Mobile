@@ -11,7 +11,11 @@
   "categories": ["transportation", "navigation"],
   "lang": "pt-BR",
   "icons": [
+<<<<<<< HEAD
     { "src": "img/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+=======
+    { "src": "img/realista-point.png", "sizes": "500x500", "type": "image/png", "purpose": "any" }
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   ]
 }

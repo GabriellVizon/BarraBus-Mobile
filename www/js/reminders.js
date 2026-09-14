@@ -5,6 +5,7 @@
     var timers = {};
     var onFireCallback = null;
 
+<<<<<<< HEAD
     function isCircular(stopId) {
         if (typeof CONFIG_HORARIOS === 'undefined') return false;
         if (CONFIG_HORARIOS.correspondencias && CONFIG_HORARIOS.correspondencias[stopId]) return true;
@@ -15,6 +16,8 @@
         });
     }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     function load() {
         try {
             var raw = localStorage.getItem(STORAGE_KEY);
@@ -74,7 +77,10 @@
     }
 
     function add(opts) {
+<<<<<<< HEAD
         if (opts && isCircular(opts.stopId)) return null;
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         var departure = opts && opts.departure;
         var minutesBefore = Number(opts && opts.minutesBefore);
         if (!departure || !Number.isFinite(minutesBefore)) return null;
@@ -123,6 +129,7 @@
     function sync() {
         var list = load();
         var now = Date.now();
+<<<<<<< HEAD
         // Lembretes antigos da Circular usavam previsões extrapoladas e não devem disparar.
         var keep = list.filter(function (r) { return r.triggerAt > now && !isCircular(r.stopId); });
         list.forEach(function (r) {
@@ -131,6 +138,9 @@
                 delete timers[r.id];
             }
         });
+=======
+        var keep = list.filter(function (r) { return r.triggerAt > now; });
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         if (keep.length !== list.length) save(keep);
         keep.forEach(schedule);
     }
@@ -151,4 +161,8 @@
         requestPermission: requestPermission,
         isPermissionGranted: isPermissionGranted
     };
+<<<<<<< HEAD
 })();
+=======
+})();
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb

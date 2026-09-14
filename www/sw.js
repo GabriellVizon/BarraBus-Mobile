@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const CACHE_NAME = 'barrabus-v19-abas-historico';
+=======
+const CACHE_NAME = 'barrabus-v7';
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
 const PRE_CACHE_URLS = [
   '/index.html',
@@ -11,25 +15,37 @@ const PRE_CACHE_URLS = [
   '/js/theme.js',
   '/js/favorites.js',
   '/js/reminders.js',
+<<<<<<< HEAD
   '/js/horarios.js',
   '/js/circular-ui.js',
   '/js/modal.js',
   '/js/circular-route.js',
+=======
+  '/js/install.js',
+  '/js/modal.js',
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   '/js/appShell.js',
   '/js/bootstrap-home.js',
   '/js/bootstrap-points.js',
   '/js/pontos.js',
   '/dados/pontos.json',
   '/dados/horarios.json',
+<<<<<<< HEAD
   '/dados/pontos-plena.json',
   '/dados/horarios-plena.json',
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   '/manifest.json',
   '/img/icon-192.png',
   '/img/icon-512.png',
   '/img/apple-touch-icon.png',
   '/img/realista-point.png',
+<<<<<<< HEAD
   '/img/realista-point.modoclaro.png',
   '/img/do-utilizador.png'
+=======
+  '/img/realista-point.modoclaro.png'
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 ];
 
 self.addEventListener('install', event => {
@@ -93,10 +109,22 @@ self.addEventListener('fetch', event => {
   }
 
   event.respondWith(
+<<<<<<< HEAD
     fetch(request).then(response => {
       const clone = response.clone();
       caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
       return response;
     }).catch(() => caches.match(request))
+=======
+    caches.open(CACHE_NAME).then(cache =>
+      cache.match(request).then(cached => {
+        const fetched = fetch(request).then(response => {
+          if (response.ok) cache.put(request, response.clone());
+          return response;
+        }).catch(() => cached);
+        return cached || fetched;
+      })
+    )
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   );
 });

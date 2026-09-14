@@ -1,10 +1,17 @@
+<<<<<<< HEAD
+=======
+console.log("SCRIPT.JS FOI CARREGADO");
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 const BARRA_BONITA_CENTER = [-22.4946, -48.5588];
 
 const state = {
   pontos: [],
   horarios: [],
   userPosition: null,
+<<<<<<< HEAD
   gpsDenied: (typeof getGpsDeniedPersisted === 'function') ? getGpsDeniedPersisted() : false,
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   selectedStopId: null,
   map: null,
   markerLayer: null,
@@ -48,11 +55,14 @@ async function init() {
   setupBackToTop();
   setupOfflineDetection();
 
+<<<<<<< HEAD
   if (!loadCache()) {
     renderSkeletons(els.favStops, 3);
     renderSkeletons(els.nearbyStops, 3);
   }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   if (typeof Reminders !== 'undefined') {
     Reminders.init({
       onFire: function (reminder) {
@@ -61,7 +71,10 @@ async function init() {
     });
   }
   setInterval(refreshLiveDepartures, 30000);
+<<<<<<< HEAD
   setInterval(reperguntarLocalizacao, 5 * 60 * 1000);
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
   var cached = loadCache();
   var modalInited = false;
@@ -90,7 +103,10 @@ async function init() {
     if (cached) {
       state.pontos = cached.pontos;
       state.horarios = cached.horarios;
+<<<<<<< HEAD
       if (typeof setPontosCircular === 'function') setPontosCircular(state.pontos);
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
       if (state.distanceCache) state.distanceCache.invalidate();
       initModalOnce();
       renderAll();
@@ -104,7 +120,11 @@ async function init() {
     }
     initModalOnce();
     renderAll();
+<<<<<<< HEAD
     reperguntarLocalizacao();
+=======
+    requestUserLocation();
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   } catch (error) {
     console.error(error);
     if (!cached) {
@@ -131,7 +151,10 @@ async function carregarDados() {
 
   state.pontos = pontos;
   state.horarios = horarios;
+<<<<<<< HEAD
   if (typeof setPontosCircular === 'function') setPontosCircular(state.pontos);
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 }
 
 function setupNavigation() {
@@ -178,7 +201,11 @@ function setupNavigation() {
 }
 
 function setupInteractions() {
+<<<<<<< HEAD
   els.heroBtn?.addEventListener('click', () => reperguntarLocalizacao({ scrollToNearby: true }));
+=======
+  els.heroBtn?.addEventListener('click', () => requestUserLocation({ scrollToNearby: true }));
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
   document.addEventListener('click', (event) => {
     const action = event.target.closest('[data-action]');
@@ -233,7 +260,11 @@ function setupSearch() {
   if (!els.searchInput || !els.searchResults ) return;
 
   els.searchMobileBtn?.addEventListener('click', () => {
+<<<<<<< HEAD
     toggleMobileSearch(true);
+=======
+    document.getElementById('searchBox')?.classList.toggle('mobile-open');
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     els.searchInput?.focus();
   });
 
@@ -273,12 +304,18 @@ function setupSearch() {
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.search-box')) {
       hideSearchSuggestions();
+<<<<<<< HEAD
       toggleMobileSearch(false);
     }
   });
 
   setupMobileSearchDismiss();
 
+=======
+    }
+  });
+
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   const searchIcon = document.querySelector('#searchBox .ti-search');
   searchIcon?.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -391,10 +428,14 @@ function renderNearbyStops() {
   if (!els.nearbyStops) return;
 
   if (!state.userPosition) {
+<<<<<<< HEAD
     var msg = state.gpsDenied
       ? gpsDeniedHelp()
       : 'Permita o acesso à localização para ver os 3 pontos mais próximos de você.';
     showEmpty(els.nearbyStops, msg);
+=======
+    showEmpty(els.nearbyStops, 'Permita o acesso à localização para ver os 3 pontos mais próximos de você.');
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     if (els.nearbySubtitle) {
       els.nearbySubtitle.textContent = 'A busca e a lista completa continuam disponíveis abaixo.';
     }
@@ -417,7 +458,12 @@ function renderNearbyStops() {
 }
 
 function renderStopCard(ponto) {
+<<<<<<< HEAD
   const pass = encontrarPassagens(ponto.id);
+=======
+  const next = encontrarPassagens(ponto.id);
+  const horariosLinha = getHorario(state.horarios, getCurrentDayType());
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   const distanceText = typeof ponto.distancia === 'number'
     ? formatDistance(ponto.distancia)
     : hasCoords(ponto)
@@ -429,6 +475,7 @@ function renderStopCard(ponto) {
     ? `https://www.google.com/maps/dir/?api=1&destination=${ponto.lat},${ponto.lng}`
     : '';
   const isFav = typeof Favorites !== 'undefined' && Favorites.isFavorite(String(ponto.id));
+<<<<<<< HEAD
   const nextClass = pass.encontrado
     ? (pass.situacao === 'no_ponto' ? 'now' : 'waiting')
     : 'waiting';
@@ -440,6 +487,9 @@ function renderStopCard(ponto) {
   const chipsProximos = calcularPassagensDoPonto(ponto.id).filter(p => p.embarque && p.minutosFim >= agoraHoje);
   const chipsVisiveis = chipsProximos.slice(0, 4);
   const chipsExtras = Math.max(0, chipsProximos.length - 4);
+=======
+  const nextClass = next.minutosRestantes <= 5 ? 'now' : 'waiting';
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
   return `
     <div class="card stop-card ${selected}" data-stop-id="${ponto.id}">
@@ -449,7 +499,11 @@ function renderStopCard(ponto) {
         </div>
         <div class="card-header-right">
           <span class="card-distance">${escapeHtml(distanceText)}</span>
+<<<<<<< HEAD
           <button class="fav-btn ${isFav ? 'favorited' : ''}" data-id="${ponto.id}" aria-label="${isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">
+=======
+          <button class="fav-btn ${isFav ? 'favorited' : ''}" data-id="${ponto.id}" aria-label="Favoritar">
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
             <i class="ti ti-${isFav ? 'heart-filled' : 'heart'}"></i>
           </button>
         </div>
@@ -458,18 +512,30 @@ function renderStopCard(ponto) {
       <p class="card-address">${escapeHtml(ponto.endereco)}</p>
       <div class="card-next-bus">
         <span class="card-next-label"><i class="ti ti-bus"></i> Próximo ônibus</span>
+<<<<<<< HEAD
         <span class="card-next-time ${nextClass}" title="${pass.faixa ? 'Previsto entre ' + escapeAttr(pass.faixa.label) : ''}">${escapeHtml(nextTimeText)}</span>
+=======
+        <span class="card-next-time ${nextClass}">${escapeHtml(next.horario)}</span>
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
       </div>
       <div class="card-meta">
         <span class="meta-chip">${escapeHtml(ponto.bairro)}</span>
       </div>
       <div class="card-horarios">
+<<<<<<< HEAD
         ${chipsVisiveis
           .map((p) => `
             <span class="time-chip ${pass.encontrado && p.horario === pass.horario ? 'active' : 'inactive'}" title="${escapeAttr(origemPassagemCircular(p))}">${escapeHtml(rotuloPassagemCircular(p))}</span>
           `)
           .join('')}
         ${chipsExtras > 0 ? `<span class="time-chip more-chip">+${chipsExtras}</span>` : ''}
+=======
+        ${horariosLinha
+          .map((horario) => `
+            <span class="time-chip ${horario === next.time ? 'active' : 'inactive'}">${escapeHtml(horario)}</span>
+          `)
+          .join('')}
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
       </div>
       <div class="card-actions">
         <button class="card-action" type="button" data-action="focus-map" ${mapDisabled}>
@@ -565,6 +631,7 @@ function renderMapMarkers() {
   }
 }
 
+<<<<<<< HEAD
 function reperguntarLocalizacao(options = {}) {
   if (state.userPosition) return;
 
@@ -581,6 +648,8 @@ function reperguntarLocalizacao(options = {}) {
   });
 }
 
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 function requestUserLocation(options = {}) {
   if (!navigator.geolocation) {
     setLocationStatus('GPS indisponível', 'Use a busca manual', '--');
@@ -596,8 +665,11 @@ function requestUserLocation(options = {}) {
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       };
+<<<<<<< HEAD
       state.gpsDenied = false;
       if (typeof setGpsDeniedPersisted === 'function') setGpsDeniedPersisted(false);
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
       if (state.distanceCache) state.distanceCache.invalidate();
 
       setLocationStatus('Localização detectada', 'Calculando...', '--');
@@ -611,9 +683,13 @@ function requestUserLocation(options = {}) {
     },
     (error) => {
       if (state.distanceCache) state.distanceCache.invalidate();
+<<<<<<< HEAD
       state.gpsDenied = error.code === error.PERMISSION_DENIED;
       if (typeof setGpsDeniedPersisted === 'function') setGpsDeniedPersisted(state.gpsDenied);
       const message = state.gpsDenied
+=======
+      const message = error.code === error.PERMISSION_DENIED
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         ? 'Permissão negada'
         : 'Não foi possível localizar';
       setLocationStatus(message, 'Busca manual disponível', '--');
@@ -661,12 +737,20 @@ function updateLocationSummary() {
     return;
   }
 
+<<<<<<< HEAD
   const pass = encontrarPassagens(nearest.id);
   const nextTime = pass.encontrado ? pass.label : (pass.mensagem ? pass.mensagem : '--');
   setLocationStatus(
     'Localização detectada',
     `${nearest.nome} (${formatDistance(nearest.distancia)})`,
     nextTime,
+=======
+  const next = getNextDeparture(state.horarios);
+  setLocationStatus(
+    'Localização detectada',
+    `${nearest.nome} (${formatDistance(nearest.distancia)})`,
+    next.horario,
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   );
 
   if (!state.selectedStopId) {
@@ -678,11 +762,16 @@ function openStopModal(stopId) {
   const ponto = state.pontos.find(function (p) { return p.id === stopId; });
   if (!ponto) return;
 
+<<<<<<< HEAD
   const pass = encontrarPassagens(ponto.id);
   const next = pass.encontrado
     ? { time: pass.horario, label: pass.label, minutes: pass.minutos, faixa: pass.faixa, situacao: pass.situacao, aviso: pass.aviso, tipo: pass.tipo }
     : { time: '--', label: pass.mensagem || 'Sem horário', minutes: Number.POSITIVE_INFINITY, faixa: null, situacao: pass.situacao };
   const horarios = obterHorariosDoPonto(ponto.id);
+=======
+  const next = getNextDeparture(state.horarios);
+  const horarios = getHorario(state.horarios, getCurrentDayType());
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   const isFav = typeof Favorites !== 'undefined' && Favorites.isFavorite(String(ponto.id));
 
   let distancia = null;
@@ -726,11 +815,16 @@ function selectStop(stopId, options = {}) {
 
   if (els.selectedStopName) els.selectedStopName.textContent = ponto.nome;
   if (els.selectedStopDetails) {
+<<<<<<< HEAD
     const nextText = next.encontrado
       ? `previsão ${next.label}`
       : (next.mensagem || 'sem referência disponível');
     els.selectedStopDetails.textContent = hasCoords(ponto)
       ? `${ponto.endereco} - ${nextText}`
+=======
+    els.selectedStopDetails.textContent = hasCoords(ponto)
+      ? `${ponto.endereco} - próxima saída ${next.horario}`
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
       : `${ponto.endereco} - este ponto ainda não tem latitude e longitude.`;
   }
 
@@ -751,6 +845,7 @@ function setLocationStatus(location, nearest, departure) {
 }
 
 function refreshLiveDepartures() {
+<<<<<<< HEAD
   updateLocationSummary();
   if (typeof encontrarPassagens !== 'function') return;
 
@@ -788,6 +883,29 @@ function refreshLiveDepartures() {
       chip.classList.toggle('active', isActive);
       chip.classList.toggle('inactive', !isActive);
     });
+=======
+  if (!state.horarios) return;
+
+  document.querySelectorAll('.stop-card').forEach((card) => {
+    const stopId = Number(card.dataset.stopId);
+    const next = encontrarPassagens(stopId);
+
+    const timeEl = card.querySelector('.card-next-time');
+
+    if (timeEl) {
+      if (!next.encontrado) {
+        timeEl.textContent = 'Sem horário';
+        timeEl.classList.remove('now', 'waiting');
+        return;
+      }
+
+      timeEl.textContent = next.horario;
+      timeEl.classList.remove('now', 'waiting');
+      timeEl.classList.add(
+        next.minutosRestantes <= 5 ? 'now' : 'waiting'
+      );
+    }
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   });
 
   if (state.selectedStopId && els.selectedStopDetails) {
@@ -796,6 +914,7 @@ function refreshLiveDepartures() {
     );
 
     if (ponto && hasCoords(ponto)) {
+<<<<<<< HEAD
       const pass = encontrarPassagens(state.selectedStopId);
 
       els.selectedStopDetails.textContent =
@@ -805,3 +924,15 @@ function refreshLiveDepartures() {
     }
   }
 }
+=======
+      const next = encontrarPassagens(state.selectedStopId);
+
+      els.selectedStopDetails.textContent =
+        next.encontrado
+          ? `${ponto.endereco} - próxima passagem ${next.horario}`
+          : `${ponto.endereco} - sem mais horários hoje.`;
+    }
+  }
+}
+
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb

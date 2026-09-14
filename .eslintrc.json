@@ -41,6 +41,7 @@
     "nextOccurrenceDate": "readonly",
     "reminderTriggerDate": "readonly",
     "showToast": "readonly",
+<<<<<<< HEAD
     "Reminders": "readonly",
     "CONFIG_HORARIOS": "readonly",
     "CONFIG_PLENA": "readonly",
@@ -85,6 +86,9 @@
     "construirViagemCircular": "readonly",
     "mediasObservadasCircular": "readonly",
     "CircularRoute": "readonly"
+=======
+    "Reminders": "readonly"
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   },
   "parserOptions": {
     "ecmaVersion": 2020,
@@ -99,6 +103,7 @@
   },
   "overrides": [
     {
+<<<<<<< HEAD
       "files": [
         "js/utils.js",
         "js/horarios.js"
@@ -115,6 +120,12 @@
       "rules": {
         "no-undef": "off"
       }
+=======
+      "files": ["js/utils.js"],
+      "rules": {
+        "no-unused-vars": "off"
+      }
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     }
   ],
   "ignorePatterns": [

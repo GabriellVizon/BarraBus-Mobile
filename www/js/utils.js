@@ -331,6 +331,7 @@ function cardClickEffect(card, callback) {
     }, 120);
   });
 }
+<<<<<<< HEAD
 
 function skeletonCard() {
   return (
@@ -449,3 +450,5 @@ function shouldRequestLocation() {
     return true;                               // 'prompt' | 'granted' | 'unsupported'
   });
 }
+=======
+>>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
