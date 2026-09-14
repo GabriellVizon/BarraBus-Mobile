@@ -1,0 +1,18 @@
+{
+  "name": "barrabus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BarraBus - pontos e horários de ônibus em Barra Bonita, SP",
+  "scripts": {
+    "test": "node --test",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.2",
+    "eslint": "^8.57.0"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/core": "^8.5.2"
+  }
+}
