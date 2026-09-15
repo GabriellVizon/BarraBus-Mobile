@@ -1,16 +1,15 @@
 (function () {
   var modalEl = null;
   var miniMap = null;
+  var miniMarker = null;
+  var context = {};
   var onCloseCallback = null;
   var onFavToggleCallback = null;
   var currentData = null;
   var currentTab = 'horarios';
   var liveTimer = null;
-<<<<<<< HEAD
   var routeState = {};
   var returnFocus = null;
-=======
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
   var modalState = {
     linhaSelecionada: 'circular',
@@ -22,6 +21,7 @@
   };
 
   function init(options) {
+    context = options || {};
     onCloseCallback = options && options.onClose ? options.onClose : null;
     onFavToggleCallback = options && options.onFavToggle ? options.onFavToggle : null;
     buildModal();
@@ -33,15 +33,12 @@
     modalEl.className = 'modal-overlay';
     modalEl.innerHTML =
       '<div class="modal-backdrop"></div>' +
-<<<<<<< HEAD
       '<div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalAddress">' +
-=======
-      '<div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modalTitle">' +
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         '<div class="modal-header">' +
           '<div class="modal-header-text">' +
             '<h2 class="modal-title" id="modalTitle"></h2>' +
             '<p class="modal-address" id="modalAddress"></p>' +
+            '<p class="modal-address" id="modalReference" hidden></p>' +
           '</div>' +
           '<div class="modal-header-actions">' +
             '<button class="modal-fav fav-btn" id="modalFavBtn" aria-label="Favoritar"><i class="ti ti-heart"></i></button>' +
@@ -52,6 +49,7 @@
           '<div class="modal-section modal-line-selector-wrap" id="modalLineSelector"></div>' +
           '<div class="modal-section modal-next-bus" id="modalNextBus"></div>' +
           '<div class="modal-section modal-info-row" id="modalInfoRow"></div>' +
+          '<div class="modal-location-help" id="modalLocationHelp"></div>' +
           '<div class="modal-section modal-actions-row" id="modalActions"></div>' +
           '<div class="modal-section modal-reminder-wrap" id="modalReminderWrap"></div>' +
           '<div class="modal-section modal-map-wrap" id="modalMapWrap">' +
@@ -66,7 +64,6 @@
           '</div>' +
         '</div>' +
       '</div>';
-<<<<<<< HEAD
     var bar = modalEl.querySelector('.modal-tab-bar');
     bar.setAttribute('role','tablist');
     bar.setAttribute('aria-label','Detalhes do ponto');
@@ -78,8 +75,6 @@
     var panel=modalEl.querySelector('#modalTabContent');
     panel.setAttribute('role','tabpanel');
     panel.setAttribute('tabindex','0');
-=======
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     document.body.appendChild(modalEl);
   }
 
@@ -96,10 +91,7 @@
       Favorites.toggleFavorite(id);
       var isFav = Favorites.isFavorite(id);
       this.classList.toggle('favorited', isFav);
-<<<<<<< HEAD
       this.setAttribute('aria-label', isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos');
-=======
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
       var icon = this.querySelector('i');
       if (icon) {
         icon.classList.remove('ti-heart', 'ti-heart-filled');
@@ -111,7 +103,6 @@
       if (onFavToggleCallback) onFavToggleCallback(id);
     });
 
-<<<<<<< HEAD
     var tabBtns = Array.from(modalEl.querySelectorAll('.modal-tab-btn'));
     tabBtns.forEach(function(btn,index){
       btn.addEventListener('click',function(){ activateTab(btn.dataset.tab); });
@@ -130,25 +121,6 @@
     var bar=modalEl.querySelector('.modal-tab-bar');
     body.scrollTop+=bar.getBoundingClientRect().top-body.getBoundingClientRect().top;
     if(tab==='horarios'&&miniMap)requestAnimationFrame(function(){miniMap.invalidateSize();});
-=======
-    var tabBtns = modalEl.querySelectorAll('.modal-tab-btn');
-    var tabContent = modalEl.querySelector('#modalTabContent');
-    for (var i = 0; i < tabBtns.length; i++) {
-      tabBtns[i].addEventListener('click', function () {
-        var newTab = this.getAttribute('data-tab');
-        if (newTab === currentTab) return;
-        for (var j = 0; j < tabBtns.length; j++) tabBtns[j].classList.remove('active');
-        this.classList.add('active');
-        currentTab = newTab;
-        if (!currentData) return;
-        tabContent.style.opacity = '0';
-        setTimeout(function () {
-          renderTabContent(currentData, currentTab);
-          tabContent.style.opacity = '1';
-        }, 200);
-      });
-    }
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
   }
 
   function onKeyDown(e) {
@@ -157,15 +129,9 @@
   }
 
   function trapFocus(e) {
-<<<<<<< HEAD
     var focusable = Array.from(modalEl.querySelectorAll(
       'button:not([disabled]):not([tabindex="-1"]), [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     )).filter(function(el){return el.getClientRects().length && getComputedStyle(el).visibility!=='hidden';});
-=======
-    var focusable = modalEl.querySelectorAll(
-      'button:not([disabled]), [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     if (focusable.length === 0) return;
     var first = focusable[0];
     var last = focusable[focusable.length - 1];
@@ -180,7 +146,6 @@
     return modalEl && modalEl.classList.contains('open');
   }
 
-<<<<<<< HEAD
   function applyPlenaTheme() {
     modalEl.classList.toggle('plena-theme', modalState.linhaSelecionada === 'plena');
   }
@@ -188,11 +153,9 @@
   function open(data) {
     returnFocus = document.activeElement;
     routeState = {};
-=======
-  function open(data) {
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     currentData = data;
     currentTab = 'horarios';
+    syncLocation();
     var tabBtns = modalEl.querySelectorAll('.modal-tab-btn');
     for (var i = 0; i < tabBtns.length; i++) {
       tabBtns[i].classList.toggle('active', tabBtns[i].getAttribute('data-tab') === 'horarios');
@@ -204,10 +167,7 @@
 
     modalState.linhaSelecionada = linhaInicial;
     modalState.linhasDisponiveis = linhas;
-<<<<<<< HEAD
     applyPlenaTheme();
-=======
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
     if (linhaInicial === 'plena') {
       var sentidos = typeof obterSentidosPlena === 'function'
@@ -220,7 +180,7 @@
         ? obterAbasDiaPlena(modalState.sentidoPlena, data.ponto.id)
         : [];
       modalState.abasDiaPlena = abas;
-      modalState.diaTabPlena = abas.length > 0 ? abas[0].id : 'uteis';
+      modalState.diaTabPlena = abas.some(function(a){return a.id === getCurrentDayType();}) ? getCurrentDayType() : (abas.length ? abas[0].id : 'uteis');
     } else {
       modalState.sentidosPlena = [];
       modalState.sentidoPlena = null;
@@ -228,6 +188,7 @@
       modalState.diaTabPlena = 'uteis';
     }
 
+    data.next = computeNextForModal();
     renderHeader(data);
     renderLineSelector();
     renderNextBus(data);
@@ -250,7 +211,7 @@
     }, 30000);
 
     setTimeout(function () {
-      if (data.ponto && data.ponto.lat != null) initMiniMap(data);
+      if (isOpen() && currentData && hasCoords(currentData.ponto)) initMiniMap(currentData);
     }, 300);
   }
 
@@ -261,15 +222,61 @@
     liveTimer = null;
     destroyMiniMap();
     if (onCloseCallback) onCloseCallback();
-<<<<<<< HEAD
     function available(el){return el && el.isConnected && !el.closest('.modal-overlay') && el.getClientRects().length && getComputedStyle(el).visibility!=='hidden';}
     var target=returnFocus;
     if(!available(target)) {
       target=Array.from(document.querySelectorAll('#searchMobileBtn, #searchInput, #mobileMenuBtn')).find(available);
     }
     if(target)target.focus({preventScroll:true});
-=======
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
+  }
+
+  // The selected stop is a destination; the GPS origin belongs to the page.
+  function syncLocation() {
+    if (!currentData) return;
+    var origin = context.getUserPosition ? context.getUserPosition() : null;
+    currentData.userPosition = origin && hasCoords(origin) ? origin : null;
+    currentData.distancia = currentData.userPosition && hasCoords(currentData.ponto)
+      ? distanceKm(origin.lat, origin.lng, currentData.ponto.lat, currentData.ponto.lng) : null;
+    currentData.distanciaText = null;
+  }
+
+  function refreshLocation() {
+    if (!currentData || !isOpen()) return;
+    syncLocation();
+    renderInfoRow(currentData);
+    renderActions(currentData);
+  }
+
+  function selectPoint(id) {
+    var point = context.resolvePoint && context.resolvePoint(Number(id), modalState.linhaSelecionada);
+    if (!point || !currentData) return;
+    currentData = Object.assign({}, currentData, {
+      ponto: point,
+      horarios: modalState.linhaSelecionada === 'circular' ? obterHorariosDoPonto(point.id) : [],
+      isFav: Favorites.isFavorite(String(point.id))
+    });
+    if (modalState.linhaSelecionada === 'plena') {
+      modalState.sentidosPlena = obterSentidosPlena(point.id);
+      if (!modalState.sentidosPlena.some(function(s){return s.id === modalState.sentidoPlena;})) {
+        modalState.sentidoPlena = modalState.sentidosPlena.length ? modalState.sentidosPlena[0].id : null;
+      }
+      modalState.abasDiaPlena = obterAbasDiaPlena(modalState.sentidoPlena, point.id);
+      if (!modalState.abasDiaPlena.some(function(d){return d.id === modalState.diaTabPlena;})) {
+        modalState.diaTabPlena = modalState.abasDiaPlena.length ? modalState.abasDiaPlena[0].id : 'uteis';
+      }
+    }
+    syncLocation();
+    currentData.next = computeNextForModal();
+    renderHeader(currentData);
+    renderNextBus(currentData);
+    renderInfoRow(currentData);
+    renderActions(currentData);
+    renderReminderState(currentData);
+    renderTabContent(currentData, currentTab);
+    initMiniMap(currentData);
+    if (context.onPointSelected) context.onPointSelected(point.id);
+    var title = modalEl.querySelector('#modalTitle');
+    title.setAttribute('aria-live','polite');
   }
 
   function updateLive() {
@@ -309,7 +316,6 @@
       }
       return { time: '--', label: 'Sem dados', minutes: Infinity };
     }
-<<<<<<< HEAD
     // CIRCULAR: referências parciais por ponto — usa o tipo de dia atual, igual à
     // lista de horários exibida (diaTabPlena pertence à Plena).
     if (typeof encontrarPassagens === 'function') {
@@ -325,8 +331,6 @@
       }
       return { time: '--', label: pass.mensagem || 'Sem horário', minutes: Infinity, situacao: pass.situacao, faixa: null };
     }
-=======
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     return getNextDeparture(currentData.horarios);
   }
 
@@ -336,13 +340,13 @@
     modalEl.querySelector('#modalTitle').textContent = data.ponto.nome;
     var addrEl = modalEl.querySelector('#modalAddress');
     if (addrEl) addrEl.textContent = data.ponto.endereco;
+    var reference = modalEl.querySelector('#modalReference');
+    reference.textContent = data.ponto.referencia || '';
+    reference.hidden = !data.ponto.referencia;
     var favBtn = modalEl.querySelector('#modalFavBtn');
     favBtn.setAttribute('data-id', data.ponto.id);
     favBtn.classList.toggle('favorited', !!data.isFav);
-<<<<<<< HEAD
     favBtn.setAttribute('aria-label', data.isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos');
-=======
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     var icon = favBtn.querySelector('i');
     if (icon) {
       icon.classList.remove('ti-heart', 'ti-heart-filled');
@@ -386,10 +390,7 @@
 
   function onLinhaChange() {
     var linha = modalState.linhaSelecionada;
-<<<<<<< HEAD
     applyPlenaTheme();
-=======
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
 
     renderLineSelector();
 
@@ -404,7 +405,7 @@
         ? obterAbasDiaPlena(modalState.sentidoPlena, currentData.ponto.id)
         : [];
       modalState.abasDiaPlena = abas;
-      modalState.diaTabPlena = abas.length > 0 ? abas[0].id : 'uteis';
+      modalState.diaTabPlena = abas.some(function(a){return a.id === getCurrentDayType();}) ? getCurrentDayType() : (abas.length ? abas[0].id : 'uteis');
     } else {
       modalState.sentidosPlena = [];
       modalState.sentidoPlena = null;
@@ -469,12 +470,8 @@
 
   function renderNextBus(data) {
     var el = modalEl.querySelector('#modalNextBus');
-<<<<<<< HEAD
     var next = modalState.linhaSelecionada === 'circular' ? apresentarProximaCircular(data.ponto.id) : (data.next || computeNextForModal());
-=======
-    var next = data.next || computeNextForModal();
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
-    var nextLabel = next ? next.label : '--';
+    var nextLabel = next ? (modalState.linhaSelecionada === 'plena' && next.time !== '--' ? next.time : next.label) : '--';
 
     var pillName;
     if (modalState.linhaSelecionada === 'plena') {
@@ -486,7 +483,6 @@
 
     var pillColor = modalState.linhaSelecionada === 'plena' ? '#2196f3' : '';
 
-<<<<<<< HEAD
     var faixaHtml = (modalState.linhaSelecionada === 'plena' && next && next.faixa)
       ? '<div class="next-bus-faixa" title="Intervalo aproximado dos registros; não é garantia">&#8776; ' + escapeHtml(next.faixa.label) + '</div>'
       : '';
@@ -494,36 +490,23 @@
     el.innerHTML =
       '<div class="next-bus-card"' + (pillColor ? ' style="background:' + pillColor + '"' : '') + '>' +
         '<div class="next-bus-left">' +
-          '<span class="next-bus-label">' + (modalState.linhaSelecionada === 'circular' ? 'Próximo horário' : 'Próximo ônibus') + '</span>' +
-=======
-    el.innerHTML =
-      '<div class="next-bus-card"' + (pillColor ? ' style="background:' + pillColor + '"' : '') + '>' +
-        '<div class="next-bus-left">' +
-          '<span class="next-bus-label">Pr&oacute;ximo &ocirc;nibus</span>' +
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
+          '<span class="next-bus-label">' + 'Próximo horário previsto' + '</span>' +
           '<div class="next-bus-main">' +
             '<i class="ti ti-bus"></i>' +
             '<span class="next-bus-time">' + escapeHtml(nextLabel) + '</span>' +
           '</div>' +
-<<<<<<< HEAD
           faixaHtml +
-=======
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         '</div>' +
         '<div class="next-bus-pill">' +
           '<span class="next-bus-pill-name">' + escapeHtml(pillName) + '</span>' +
         '</div>' +
-<<<<<<< HEAD
-      '</div>' + (modalState.linhaSelecionada === 'circular' ? '<p class="circular-notice">' + escapeHtml(CircularUI.aviso) + '</p>' : '');
-=======
-      '</div>';
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
+      '</div>' + '<p class="circular-notice">' + escapeHtml(CircularUI.aviso) + '</p>';
   }
 
   function renderInfoRow(data) {
     var el = modalEl.querySelector('#modalInfoRow');
     var ponto = data.ponto;
-    var dText = data.distanciaText || (data.distancia != null ? formatDistance(data.distancia) : null);
+    var dText = data.distancia != null ? formatDistance(data.distancia) : 'Distância indisponível';
 
     var html = '';
     if (dText) {
@@ -531,23 +514,33 @@
     }
     html += '<div class="info-col-card"><i class="ti ti-home"></i><div><p class="info-col-label">Bairro</p><p class="info-col-value">' + escapeHtml(ponto.bairro || '—') + '</p></div></div>';
     el.innerHTML = html;
+    var help = modalEl.querySelector('#modalLocationHelp');
+    help.innerHTML = data.userPosition ? '' : '<span>Ative sua localização para ver a distância até este ponto.</span>' +
+      (context.requestLocation ? '<button type="button" id="modalRetryLocation">Tentar novamente</button>' : '');
+    var retry = help.querySelector('button');
+    if (retry) retry.addEventListener('click', function(){
+      retry.disabled = true;
+      retry.textContent = 'Buscando localização…';
+      context.requestLocation();
+    });
   }
 
   function renderActions(data) {
     var el = modalEl.querySelector('#modalActions');
     var ponto = data.ponto;
-    var hasCoords = ponto.lat != null && ponto.lng != null;
-    var routeUrl = hasCoords ? 'https://www.google.com/maps/dir/?api=1&destination=' + ponto.lat + ',' + ponto.lng : null;
+    var validCoords = hasCoords(ponto);
+    var routeUrl = validCoords ? 'https://www.google.com/maps/dir/?api=1&destination=' + ponto.lat + ',' + ponto.lng : null;
+    if (routeUrl && data.userPosition) routeUrl += '&origin=' + data.userPosition.lat + ',' + data.userPosition.lng + '&travelmode=walking';
 
     el.innerHTML =
-      (hasCoords ? '<button class="action-btn action-btn-red" id="modalActionMap"><i class="ti ti-map"></i> Ver mapa</button>' : '') +
-      (routeUrl ? '<a class="action-btn action-btn-outline" href="' + routeUrl + '" target="_blank" rel="noopener"><i class="ti ti-north-star"></i> Tra&ccedil;ar rota</a>' : '') +
-      '<button class="action-btn action-btn-icon" id="modalActionShare"><i class="ti ti-share"></i></button>';
+      (validCoords ? '<button class="action-btn action-btn-red" id="modalActionMap"><i class="ti ti-map"></i> Ver mapa</button>' : '') +
+      (routeUrl ? '<a id="modalActionDirections" class="action-btn action-btn-outline" href="' + routeUrl + '" target="_blank" rel="noopener"><i class="ti ti-north-star"></i> ' + (data.userPosition ? 'Traçar rota' : 'Abrir no Maps') + '</a>' : '') +
+      '<button class="action-btn action-btn-icon" id="modalActionShare" aria-label="Compartilhar ponto"><i class="ti ti-share"></i></button>';
 
     var mapBtn = modalEl.querySelector('#modalActionMap');
     if (mapBtn) {
       mapBtn.addEventListener('click', function () {
-        if (hasCoords && data.onMainMapFocus) data.onMainMapFocus(ponto);
+        if (validCoords && data.onMainMapFocus) data.onMainMapFocus(ponto);
         close();
       });
     }
@@ -560,13 +553,10 @@
   function renderReminderState(data) {
     var wrap = modalEl.querySelector('#modalReminderWrap');
     if (!wrap) return;
-<<<<<<< HEAD
     if (modalState.linhaSelecionada === 'circular') {
       wrap.innerHTML = '';
       return;
     }
-=======
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     if (typeof Reminders === 'undefined') { wrap.innerHTML = ''; return; }
 
     var stopId = data.ponto.id;
@@ -636,7 +626,6 @@
   function renderTabContent(data, tab) {
     var el = modalEl.querySelector('#modalTabContent');
     if (!el) return;
-<<<<<<< HEAD
     modalEl.classList.toggle('show-route',tab==='percurso');
     modalEl.querySelectorAll('.modal-tab-btn').forEach(function(btn){
       var active=btn.dataset.tab===tab;
@@ -645,8 +634,6 @@
       btn.tabIndex=active?0:-1;
     });
     el.setAttribute('aria-labelledby','modal-tab-'+tab);
-=======
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     if (tab === 'horarios') {
       renderScheduleTab(el, data);
     } else {
@@ -665,36 +652,12 @@
   }
 
   function renderScheduleCircular(el, data) {
-<<<<<<< HEAD
     var old = el.querySelector('details'), opened = old && old.open;
     el.innerHTML = CircularUI.schedule(data.ponto.id, getCurrentDayType(), true);
     var details = el.querySelector('details'); if (details && opened) details.open = true;
   }
 
     function renderSchedulePlena(el, data) {
-=======
-    var horarios = data.horarios;
-    if (!horarios || horarios.length === 0) {
-      var emptyMsg = getCurrentDayType() === 'domingo'
-        ? 'Não há operação aos domingos.'
-        : 'Nenhum horário disponível.';
-      el.innerHTML = '<p class="tab-empty">' + escapeHtml(emptyMsg) + '</p>';
-      return;
-    }
-    var nextTime = data.next ? data.next.time : null;
-    var times = horarios.map(function (t) {
-      var cls = t === nextTime ? ' modal-time-active' : '';
-      return '<span class="modal-time' + cls + '">' + escapeHtml(t) + '</span>';
-    }).join('');
-    el.innerHTML =
-      '<div class="schedule-group">' +
-        '<div class="schedule-line-label"><span class="schedule-dot" style="background:' + (data.lineColor || BUS_COLOR) + '"></span>Rota Circular</div>' +
-        '<div class="modal-times-grid">' + times + '</div>' +
-      '</div>';
-  }
-
-  function renderSchedulePlena(el, data) {
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     var html = '';
 
     if (modalState.sentidosPlena.length > 1) {
@@ -768,6 +731,7 @@
         });
 
         var fresh = Object.assign({}, data, { next: computeNextForModal() });
+        renderNextBus(fresh);
         renderSchedulePlena(el, fresh);
         renderReminderState(fresh);
       });
@@ -775,13 +739,10 @@
   }
 
   function renderRouteTab(el, data) {
-<<<<<<< HEAD
     if (modalState.linhaSelecionada === 'circular') {
-      routeState=CircularRoute.mount(el,data,routeState);
+      routeState=CircularRoute.mount(el,data,routeState,selectPoint);
       return;
     }
-=======
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
     var allLinePoints;
     if (modalState.linhaSelecionada === 'plena') {
       var sentido = modalState.sentidosPlena.find(function (s) { return s.id === modalState.sentidoPlena; });
@@ -807,7 +768,7 @@
       var lineColor = modalState.linhaSelecionada === 'plena' ? '#2196f3' : (data.lineColor || BUS_COLOR);
       parts.push(
         '<div class="route-stop">' +
-          '<span class="' + nameClass + '">' + escapeHtml(p.nome) + (isCurrent ? ' <i class="ti ti-map-pin"></i>' : '') + '</span>' +
+          '<button type="button" data-route-point="' + p.id + '" class="' + nameClass + '"' + (isCurrent ? ' aria-current="true"' : '') + '>' + escapeHtml(p.nome) + (isCurrent ? ' <i class="ti ti-map-pin"></i>' : '') + '</button>' +
           '<div class="' + dotClass + '"' + (isCurrent ? ' style="background:' + lineColor + ';box-shadow:0 0 0 4px ' + hexToRgba(lineColor, 0.35) + '"' : '') + '></div>' +
         '</div>'
       );
@@ -816,6 +777,7 @@
       }
     });
     el.innerHTML = '<div class="route-timeline-h"><div class="route-track">' + parts.join('') + '</div></div>';
+    el.querySelectorAll('[data-route-point]').forEach(function(btn){btn.addEventListener('click',function(){selectPoint(btn.dataset.routePoint);var selected=el.querySelector('[aria-current]');if(selected)selected.focus({preventScroll:true});});});
   }
 
   function sharePoint(data) {
@@ -842,20 +804,25 @@
   function initMiniMap(data) {
     var ponto = data.ponto;
     var container = modalEl.querySelector('#modalMiniMap');
-    if (!container || typeof L === 'undefined') return;
-    destroyMiniMap();
+    if (!container || typeof L === 'undefined' || !hasCoords(ponto)) return;
+    if (miniMap) {
+      miniMap.setView([Number(ponto.lat), Number(ponto.lng)], 16, {animate:false});
+      miniMarker.setLatLng([Number(ponto.lat), Number(ponto.lng)]);
+      miniMarker.setTooltipContent(escapeHtml(ponto.nome));
+      return;
+    }
     miniMap = L.map(container, { zoomControl: true, scrollWheelZoom: true })
       .setView([Number(ponto.lat), Number(ponto.lng)], 16);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap'
     }).addTo(miniMap);
-    L.marker([Number(ponto.lat), Number(ponto.lng)]).addTo(miniMap);
+    miniMarker = L.marker([Number(ponto.lat), Number(ponto.lng)]).addTo(miniMap).bindTooltip(escapeHtml(ponto.nome));
   }
 
   function destroyMiniMap() {
-    if (miniMap) { miniMap.remove(); miniMap = null; }
+    if (miniMap) { miniMap.remove(); miniMap = null; miniMarker = null; }
   }
 
-  window.Modal = { init: init, open: open, close: close };
+  window.Modal = { init: init, open: open, close: close, refreshLocation: refreshLocation };
 })();

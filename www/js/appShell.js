@@ -35,7 +35,7 @@
                         '<div class="footer-logo-icon"><i class="ti ti-bus"></i></div>' +
                         '<span>BarraBus</span>' +
                     '</div>' +
-                    '<p class="footer-desc">Simplificando o transporte público em Barra Bonita com dados precisos e tecnologia de ponta.</p>' +
+                    '<p class="footer-desc">Simplificando o transporte público em Barra Bonita com pontos, percursos e horários previstos.</p>' +
                 '</div>' +
                 '<div class="footer-links-group">' +
                     '<div class="footer-link-col">' +
@@ -47,11 +47,7 @@
                 '</div>' +
             '</div>' +
             '<div class="footer-bottom">' +
-<<<<<<< HEAD
                 '<span>© <span id="footerYear">' + new Date().getFullYear() + '</span> BarraBus. Todos os direitos reservados.</span>' +
-=======
-                '<span>© <span id="footerYear">2024</span> BarraBus. Todos os direitos reservados.</span>' +
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
                 '<span>Desenvolvido para Barra Bonita, SP</span>' +
             '</div>' +
         '</footer>';
@@ -144,15 +140,6 @@
         document.body.innerHTML = bodyShell;
         window.__splashStart = Date.now();
 
-<<<<<<< HEAD
-=======
-        if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.SplashScreen) {
-            try {
-                window.Capacitor.Plugins.SplashScreen.hide();
-            } catch (e) {}
-        }
-
->>>>>>> 60bd1045a9203b7e13cdd7581851ec554249c3bb
         if (showFooter) {
             var yearEl = document.getElementById('footerYear');
             if (yearEl) yearEl.textContent = new Date().getFullYear();
